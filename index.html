@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anatomy of a Modern AI Stack — Parvez Khan</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     :root {
       --bg:         #f8f9fb;
@@ -39,6 +40,33 @@
       line-height: 1.75;
       font-size: 20px;
     }
+
+    /* AI neural net dot-grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(26,86,219,0.07) 1px, transparent 1px),
+        radial-gradient(circle, rgba(124,58,237,0.04) 1px, transparent 1px);
+      background-size: 40px 40px, 80px 80px;
+      background-position: 0 0, 20px 20px;
+    }
+
+    /* Subtle top gradient glow */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 420px;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 80% 40% at 50% -10%, rgba(26,86,219,0.08), transparent);
+    }
+
+    .page, nav, footer { position: relative; z-index: 1; }
 
     /* ── NAV ── */
     nav {
@@ -84,10 +112,11 @@
     }
     .page-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
       line-height: 1.04; letter-spacing: -0.03em;
       font-weight: 800; color: var(--ink);
       margin-bottom: 1.5rem;
+      white-space: nowrap;
     }
     .page-title .accent-word { color: var(--accent); }
     .page-desc {
@@ -355,6 +384,85 @@
       border-radius: 4px; color: var(--accent2); border: 1px solid var(--border);
     }
 
+    .mermaid-wrap {
+      display: none; /* hidden, replaced by PNG */
+    }
+
+    /* Diagram PNG wrapper */
+    .diagram-wrap {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .diagram-img {
+      width: 100%; height: auto;
+      border-radius: var(--radius);
+      display: block;
+    }
+    .fullscreen-btn {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 600;
+      color: var(--ink2); cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .fullscreen-btn:hover {
+      background: var(--accent);
+      color: #fff; border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Fullscreen overlay */
+    .fs-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .fs-overlay.active { display: flex; }
+    .fs-img {
+      max-width: 95vw; max-height: 90vh;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+    .fs-close {
+      position: fixed; top: 1.5rem; right: 1.5rem;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 0.5rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-weight: 600;
+      color: #fff; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .fs-close:hover { background: rgba(255,255,255,0.22); }
+
+    .restaurant-illustration {
+      background: linear-gradient(135deg, #f8f9fb 0%, #eef3fd 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem; margin: 2rem 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      display: flex; justify-content: center; align-items: center;
+    }
+    .restaurant-illustration svg { max-width: 100%; height: auto; }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem 4rem;
@@ -403,7 +511,7 @@
   <!-- PAGE HEADER -->
   <header class="page-header">
     <div class="page-kicker">Guest Session · SIT Pune · BTech AI/ML · 3rd Year</div>
-    <h1 class="page-title">Anatomy of a<br/><span class="accent-word">Modern AI Stack</span></h1>
+    <h1 class="page-title">Anatomy of a <span class="accent-word">Modern AI Stack</span></h1>
     <p class="page-desc">Every time you interact with an AI, there are layers of engineering working in perfect coordination behind that single response. This session goes beyond the model — and into the machine.</p>
   </header>
 
@@ -424,13 +532,21 @@
           <p>"No matter how advanced AI gets, every production-ready solution will always stand or fall on the strength of its engineering foundation. Great AI is less about magic — and more about very clever plumbing."</p>
         </div>
       </div>
-      <img src="Parvez-LinkedIn-QR.jpeg" width="130" height="130" style="border-radius:8px;" alt="LinkedIn QR Code"/>
+      <div class="qr-placeholder" title="Replace with your LinkedIn QR code image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <path d="M14 14h2v2h-2zM16 16h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z"/>
+        </svg>
+        <span>LinkedIn<br/>QR Code</span>
+      </div>
     </div>
   </section>
 
   <!-- THE GAP -->
   <section class="section" id="hook">
-    <div class="section-label">01 · The Hook · 0–10 mins</div>
+    <div class="section-label">01 · The Hook</div>
     <h2>The Gap Nobody Talks About Openly</h2>
     <div class="section-sub">The space between where education ends and industry begins</div>
     <p><strong>How many of you have trained a machine learning model?</strong> Probably most of you. Now — <strong>how many of you have deployed one to a million real users?</strong> That silence is exactly where today's session lives.</p>
@@ -444,7 +560,7 @@
 
   <!-- THE STACK -->
   <section class="section" id="stack">
-    <div class="section-label">02 · The Stack · 10–25 mins</div>
+    <div class="section-label">02 · The Stack</div>
     <h2>The 7 Layers Between a Click and a Response</h2>
     <div class="section-sub">Think of this as the OSI model — but for AI systems</div>
     <p>You've studied the OSI model in networking — seven layers, each with a specific job. A modern AI system works the same way. When a user types a question and hits send, here is what actually happens underneath.</p>
@@ -514,14 +630,108 @@
       </div>
     </div>
     <p>Today we go deep on <strong>Layer 04 — RAG</strong> and <strong>Layer 03 — LLMs & SLMs</strong>. These are where the most interesting engineering decisions live, and where the biggest misconceptions exist.</p>
+
+    <!-- FLOW CHART PNG -->
+    <div class="diagram-wrap">
+      <img src="./static/flow_chart.png" alt="AI Stack Flow Diagram" class="diagram-img"/>
+      <button class="fullscreen-btn" onclick="openFullscreen()" title="View fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        Fullscreen
+      </button>
+    </div>
+
+    <!-- FULLSCREEN OVERLAY -->
+    <div class="fs-overlay" id="fsOverlay" onclick="closeFullscreen()">
+      <button class="fs-close" onclick="closeFullscreen()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+        Close
+      </button>
+      <img src="./static/flow_chart.png" alt="AI Stack Flow Diagram" class="fs-img"/>
+    </div>
   </section>
 
   <!-- RESTAURANT -->
   <section class="section" id="analogy">
-    <div class="section-label">03 · Mental Model · embedded</div>
+    <div class="section-label">03 · Mental Model</div>
     <h2>Think of it as a High-End Restaurant</h2>
     <div class="section-sub">Every component has exactly one job. No single component does everything.</div>
     <p>Stop thinking of an AI system as one magical brain. Think of it as a <em>coordinated kitchen</em> — multiple specialists, each doing exactly one thing well, in a precise sequence.</p>
+
+    <!-- RESTAURANT SVG ILLUSTRATION -->
+    <div class="restaurant-illustration">
+      <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" width="820" height="220" font-family="Inter, sans-serif">
+
+        <!-- Background lane -->
+        <rect x="10" y="10" width="800" height="200" rx="14" fill="#f8f9fb" stroke="#e2e4e9" stroke-width="1.5"/>
+
+        <!-- Flow arrows between boxes -->
+        <!-- User -> Waiter -->
+        <path d="M 118 110 L 158 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <!-- Waiter -> Manager -->
+        <path d="M 268 110 L 308 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <!-- Manager -> Pantry -->
+        <path d="M 418 110 L 458 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <!-- Pantry -> Chef -->
+        <path d="M 568 110 L 608 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <!-- Chef -> Response (right edge) -->
+        <path d="M 718 110 L 758 110" stroke="#1a56db" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowBlue)"/>
+
+        <!-- Arrow markers -->
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#d1d5db"/>
+          </marker>
+          <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#1a56db"/>
+          </marker>
+        </defs>
+
+        <!-- USER box -->
+        <rect x="24" y="78" width="94" height="64" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+        <text x="71" y="106" text-anchor="middle" font-size="22">👤</text>
+        <text x="71" y="126" text-anchor="middle" font-size="11" fill="#475569" font-weight="600">User</text>
+        <text x="71" y="140" text-anchor="middle" font-size="10" fill="#94a3b8">Query</text>
+
+        <!-- WAITER box -->
+        <rect x="158" y="60" width="110" height="100" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+        <text x="213" y="97" text-anchor="middle" font-size="24">🧑‍💼</text>
+        <text x="213" y="120" text-anchor="middle" font-size="11" fill="#b91c1c" font-weight="700">The Waiter</text>
+        <text x="213" y="136" text-anchor="middle" font-size="10" fill="#b91c1c">API Gateway</text>
+        <text x="213" y="150" text-anchor="middle" font-size="9.5" fill="#b91c1c">Auth · Safety</text>
+
+        <!-- MANAGER box -->
+        <rect x="308" y="60" width="110" height="100" rx="10" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+        <text x="363" y="97" text-anchor="middle" font-size="24">👨‍🍳</text>
+        <text x="363" y="120" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">Kitchen Mgr</text>
+        <text x="363" y="136" text-anchor="middle" font-size="10" fill="#b45309">Orchestrator</text>
+        <text x="363" y="150" text-anchor="middle" font-size="9.5" fill="#b45309">Routes · Plans</text>
+
+        <!-- PANTRY box -->
+        <rect x="458" y="60" width="110" height="100" rx="10" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+        <text x="513" y="97" text-anchor="middle" font-size="24">🗄️</text>
+        <text x="513" y="120" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="700">The Pantry</text>
+        <text x="513" y="136" text-anchor="middle" font-size="10" fill="#7c3aed">Vector DB · RAG</text>
+        <text x="513" y="150" text-anchor="middle" font-size="9.5" fill="#7c3aed">Private Data</text>
+
+        <!-- CHEF box -->
+        <rect x="608" y="60" width="110" height="100" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="663" y="97" text-anchor="middle" font-size="24">🔪</text>
+        <text x="663" y="120" text-anchor="middle" font-size="11" fill="#1a56db" font-weight="700">The Chef</text>
+        <text x="663" y="136" text-anchor="middle" font-size="10" fill="#1a56db">LLM / SLM</text>
+        <text x="663" y="150" text-anchor="middle" font-size="9.5" fill="#1a56db">Generates Answer</text>
+
+        <!-- Response label at right -->
+        <text x="770" y="105" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="600">AI</text>
+        <text x="770" y="118" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="600">Response</text>
+
+        <!-- Bottom label -->
+        <text x="410" y="195" text-anchor="middle" font-size="10.5" fill="#9ca3af" font-style="italic">Every user query travels through all these layers before getting a response</text>
+      </svg>
+    </div>
     <div class="restaurant-grid">
       <div class="r-card">
         <div class="r-layer">Layer 06</div>
@@ -556,7 +766,7 @@
 
   <!-- LLMs & SLMs -->
   <section class="section" id="llms">
-    <div class="section-label">04 · LLMs & SLMs · 25–35 mins</div>
+    <div class="section-label">04 · LLMs & SLMs</div>
     <h2>LLMs and SLMs — What They Actually Are</h2>
     <div class="section-sub">No math. Just the right mental model for an engineer.</div>
     <p>A Large Language Model is, at its core, a <em>very well-read autocomplete</em>. It has read a significant portion of the internet, learned the statistical patterns of human language, and became extraordinarily good at predicting what word comes next — with context, at scale, and with surprising coherence.</p>
@@ -590,7 +800,7 @@
 
   <!-- RAG -->
   <section class="section" id="rag">
-    <div class="section-label">05 · RAG · 35–45 mins</div>
+    <div class="section-label">05 · RAG</div>
     <h2>RAG — How Industry Makes LLMs Work with Real Data</h2>
     <div class="section-sub">Retrieval Augmented Generation — the architecture that closes the gap</div>
     <p>LLMs are powerful but frozen. The naive answer is fine-tuning — retrain the model on your data. This sounds correct but is almost always the wrong engineering decision. It's expensive, slow, and in domains like banking or healthcare where data changes continuously, it simply doesn't scale.</p>
@@ -656,7 +866,7 @@
 
   <!-- BRIDGE -->
   <section class="section" id="bridge">
-    <div class="section-label">06 · Curriculum Connection · embedded</div>
+    <div class="section-label">06 · Curriculum Connection</div>
     <h2>You Already Know More Than You Think</h2>
     <div class="section-sub">Every subject you are studying connects directly to this stack</div>
     <p>The fundamentals being built in your degree are the foundation of every system described here. These are not separate worlds — they are the same engineering principles applied at different layers of the same stack.</p>
@@ -690,7 +900,7 @@
 
   <!-- DEMO -->
   <section class="section" id="demo">
-    <div class="section-label">07 · Live Demo · 45–55 mins</div>
+    <div class="section-label">07 · Live Demo</div>
     <h2>Building a Minimal RAG Pipeline</h2>
     <div class="section-sub">A working system in under 30 lines of Python — same architecture as production</div>
     <p>Theory is useful. A working system is better. The notebook below walks through a minimal but complete RAG pipeline — stripped to its essential moving parts so the architecture is fully visible without noise.</p>
@@ -713,7 +923,7 @@
 
   <!-- TAKEAWAYS -->
   <section class="section" id="takeaways">
-    <div class="section-label">08 · Close · 55–60 mins</div>
+    <div class="section-label">08 · Close</div>
     <h2>Your 2-Year Runway</h2>
     <div class="section-sub">Three things to do this week — not someday, this week</div>
     <p>The engineers who understand the full stack — not just the model — are the ones who build things that survive contact with reality.</p>
@@ -751,4 +961,17 @@
 </footer>
 
 </body>
+<script>
+  function openFullscreen() {
+    document.getElementById('fsOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFullscreen() {
+    document.getElementById('fsOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeFullscreen();
+  });
+</script>
 </html>
