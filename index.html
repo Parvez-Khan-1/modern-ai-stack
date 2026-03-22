@@ -378,6 +378,205 @@
     }
     .btn:hover { background: #1648c2; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(26,86,219,0.3); }
 
+    /* ── WHY IT MATTERS BOX ── */
+    .why-matters-box {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+    }
+    .why-matters-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem; font-weight: 800;
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 0.75rem;
+    }
+    .why-matters-text {
+      font-size: 1rem; color: var(--ink2);
+      line-height: 1.85; margin-bottom: 1.5rem;
+    }
+    .why-matters-text strong { color: var(--ink); }
+    .why-matters-text em { color: var(--accent2); font-style: italic; }
+    .why-stats {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem; padding-top: 1.25rem;
+      border-top: 1px solid rgba(26,86,219,0.12);
+    }
+    .why-stat { text-align: center; }
+    .why-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem; font-weight: 800;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .why-stat-label {
+      font-size: 0.8rem; color: var(--ink3); line-height: 1.5;
+    }
+
+    /* ── AI EVOLUTION TIMELINE ── */
+    .timeline { margin: 2.5rem 0; position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 7px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 2rem; display: flex; gap: 1.25rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 0.25rem;
+      position: absolute; left: -1.9rem;
+      border: 2px solid var(--surface);
+    }
+    .timeline-content {
+      flex: 1; background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      transition: box-shadow 0.15s;
+    }
+    .timeline-content:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .timeline-era {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .timeline-desc { font-size: 0.92rem; color: var(--ink3); line-height: 1.7; margin-bottom: 0.75rem; }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .ttag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 500;
+      padding: 0.18rem 0.6rem; border-radius: 999px;
+      background: var(--bg2); color: var(--ink3);
+      border: 1px solid var(--border);
+    }
+
+    /* ── EXPANDABLE LAYERS ── */
+    .stack-layer.expandable { cursor: pointer; user-select: none; }
+    .stack-layer.expandable:hover { background: var(--bg2); }
+    .expand-icon {
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--ink3); margin-left: 0.5rem;
+      transition: transform 0.2s; flex-shrink: 0;
+      width: 22px; text-align: center;
+    }
+    .expand-icon.open { transform: rotate(45deg); color: var(--accent); }
+    .layer-detail {
+      display: none;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.75rem;
+      animation: fadeIn 0.18s ease;
+    }
+    .layer-detail.open { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+    .detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .detail-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 700;
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 0.5rem;
+    }
+    .detail-text { font-size: 0.88rem; color: var(--ink2); line-height: 1.7; margin: 0; }
+    .detail-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .detail-chips span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 500;
+      background: var(--surface); color: var(--ink2);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+    }
+
+    /* ── AI EVOLUTION TABLE (kept for fallback) ── */
+    .evolution-wrap {
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .evolution-header {
+      display: grid; grid-template-columns: 1fr 48px 1fr;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.5rem;
+      align-items: center;
+    }
+    .evo-col-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .evo-col-label.old { color: var(--ink3); }
+    .evo-col-label.new { color: var(--accent); }
+    .evo-divider-label { text-align: center; color: var(--border2); font-size: 1.1rem; }
+    .evolution-row {
+      display: grid; grid-template-columns: 1fr 48px 1fr;
+      align-items: center; padding: 0.85rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    .evolution-row:last-child { border-bottom: none; }
+    .evolution-row:hover { background: var(--bg2); }
+    .evo-old {
+      font-size: 0.97rem; color: var(--ink3);
+      text-decoration: line-through; text-decoration-color: #d1d5db;
+    }
+    .evo-arrow { text-align: center; color: var(--border2); font-size: 1rem; font-weight: 600; }
+    .evo-new { font-size: 0.97rem; color: var(--ink); font-weight: 600; }
+
+    /* ── LAYER GROUPS ── */
+    .layer-groups { margin: 2rem 0; }
+    .layer-group { margin-bottom: 0.6rem; }
+    .layer-group-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.35rem 0.9rem; border-radius: 999px;
+      border: 1px solid; margin-bottom: 0.5rem;
+    }
+    .layer-group-desc {
+      font-size: 0.9rem; color: var(--ink3);
+      line-height: 1.65; margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
+
+    /* ── AGENT CARDS ── */
+    .agent-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem; margin: 1.75rem 0;
+    }
+    .agent-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.4rem;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .agent-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); border-color: var(--border2); }
+    .agent-icon { font-size: 1.75rem; margin-bottom: 0.6rem; }
+    .agent-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .agent-desc { font-size: 0.88rem; color: var(--ink3); line-height: 1.65; margin-bottom: 0.75rem; }
+    .agent-example {
+      font-size: 0.8rem; color: var(--ink3);
+      background: var(--bg2); border-radius: var(--radius);
+      padding: 0.65rem 0.85rem; border-left: 3px solid var(--border2);
+      font-style: italic; line-height: 1.55;
+    }
+
     code {
       font-family: 'JetBrains Mono', monospace; font-size: 0.82em;
       background: var(--bg2); padding: 0.15em 0.45em;
@@ -482,7 +681,10 @@
       .nav-links { display: none; }
       .about-layout { grid-template-columns: 1fr; }
       .qr-placeholder { display: none; }
+      .why-stats { grid-template-columns: 1fr; }
+      .agent-grid { grid-template-columns: 1fr; }
       .restaurant-grid, .bridge-grid { grid-template-columns: 1fr; }
+      .detail-grid { grid-template-columns: 1fr; }
       .ps-card { grid-template-columns: 1fr; }
       .ps-arrow { display: none; }
       .rag-flow { flex-direction: column; }
@@ -498,9 +700,12 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#hook">The Gap</a></li>
+    <li><a href="#evolution">Evolution</a></li>
+    <li><a href="#analogy">Mental Model</a></li>
     <li><a href="#stack">The Stack</a></li>
     <li><a href="#llms">LLMs & SLMs</a></li>
     <li><a href="#rag">RAG</a></li>
+    <li><a href="#agents">Agents</a></li>
     <li><a href="#demo">Demo</a></li>
     <li><a href="#takeaways">Takeaways</a></li>
   </ul>
@@ -544,9 +749,9 @@
     </div>
   </section>
 
-  <!-- THE GAP -->
+  <!-- SECTION 01: THE GAP + WHY IT MATTERS -->
   <section class="section" id="hook">
-    <div class="section-label">01 · The Hook</div>
+    <div class="section-label">01 · The Gap</div>
     <h2>The Gap Nobody Talks About Openly</h2>
     <div class="section-sub">The space between where education ends and industry begins</div>
     <p><strong>How many of you have trained a machine learning model?</strong> Probably most of you. Now — <strong>how many of you have deployed one to a million real users?</strong> That silence is exactly where today's session lives.</p>
@@ -555,132 +760,135 @@
       <div class="callout-label">The reality of production AI</div>
       <p>In a live system, your model is rarely the hardest problem. The data pipelines, the latency, the hallucinations, the cost, the monitoring — that is where engineers spend most of their time.</p>
     </div>
-    <p>I've spent 10 years on the production side of this. At Mastercard, I oversee <strong>700+ predictive models running live</strong>. I've seen brilliant models fail spectacularly — not because the model was wrong, but because everything <em>around</em> it wasn't engineered to survive contact with reality. Today I'm going to show you what that "everything around it" looks like.</p>
-  </section>
+    <p>I've spent 10 years on the production side of this. At Mastercard, I oversee <strong>700+ predictive models running live</strong>. I've seen brilliant models fail spectacularly — not because the model was wrong, but because everything <em>around</em> it wasn't engineered to survive contact with reality.</p>
 
-  <!-- THE STACK -->
-  <section class="section" id="stack">
-    <div class="section-label">02 · The Stack</div>
-    <h2>The 7 Layers Between a Click and a Response</h2>
-    <div class="section-sub">Think of this as the OSI model — but for AI systems</div>
-    <p>You've studied the OSI model in networking — seven layers, each with a specific job. A modern AI system works the same way. When a user types a question and hits send, here is what actually happens underneath.</p>
-    <div class="stack-diagram">
-      <div class="stack-layer">
-        <div class="layer-num">07</div>
-        <div class="layer-bar" style="background:#d1d5db;"></div>
-        <div class="layer-content">
-          <div class="layer-name">User Interface</div>
-          <div class="layer-desc">The chat window, mobile app, or API call the user interacts with</div>
+    <div class="why-matters-box">
+      <div class="why-matters-label">Why the AI Stack Matters Now</div>
+      <p class="why-matters-text">AI in 2025 is no longer a model sitting in a notebook. It is a <strong>living system</strong> — with layers of data, orchestration, retrieval, safety, and infrastructure all working in coordination. The engineers who understand how these layers connect are the ones companies are desperately hiring for. Understanding the stack is what separates an AI <em>user</em> from an AI <em>engineer</em>.</p>
+      <div class="why-stats">
+        <div class="why-stat">
+          <div class="why-stat-num">700+</div>
+          <div class="why-stat-label">Predictive models in production at Mastercard alone</div>
         </div>
-        <span class="layer-tag" style="background:#f4f4f5;color:#71717a;border:1px solid #e4e4e7;">Frontend</span>
-      </div>
-      <div class="stack-layer">
-        <div class="layer-num">06</div>
-        <div class="layer-bar" style="background:#b91c1c;"></div>
-        <div class="layer-content">
-          <div class="layer-name">API Gateway / Semantic Gateway</div>
-          <div class="layer-desc">Auth, rate limiting, prompt safety checks, intelligent routing</div>
+        <div class="why-stat">
+          <div class="why-stat-num">10×</div>
+          <div class="why-stat-label">More engineering effort goes into the stack than the model</div>
         </div>
-        <span class="layer-tag" style="background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;">The Waiter</span>
-      </div>
-      <div class="stack-layer">
-        <div class="layer-num">05</div>
-        <div class="layer-bar" style="background:#b45309;"></div>
-        <div class="layer-content">
-          <div class="layer-name">Orchestration Layer</div>
-          <div class="layer-desc">Coordinates which model, which tools, which data sources to involve</div>
+        <div class="why-stat">
+          <div class="why-stat-num">2024</div>
+          <div class="why-stat-label">The year "AI Engineer" became the most in-demand new role</div>
         </div>
-        <span class="layer-tag" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">Kitchen Manager</span>
       </div>
-      <div class="stack-layer">
-        <div class="layer-num">04</div>
-        <div class="layer-bar" style="background:#7c3aed;"></div>
-        <div class="layer-content">
-          <div class="layer-name">Retrieval Layer (RAG)</div>
-          <div class="layer-desc">Fetches relevant private or real-time data before the model sees the query</div>
-        </div>
-        <span class="layer-tag" style="background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe;">The Pantry</span>
-      </div>
-      <div class="stack-layer">
-        <div class="layer-num">03</div>
-        <div class="layer-bar" style="background:#1a56db;"></div>
-        <div class="layer-content">
-          <div class="layer-name">LLM / SLM</div>
-          <div class="layer-desc">The language model generating the response — the Chef, not the whole kitchen</div>
-        </div>
-        <span class="layer-tag" style="background:#eff6ff;color:#1a56db;border:1px solid #bfdbfe;">The Chef</span>
-      </div>
-      <div class="stack-layer">
-        <div class="layer-num">02</div>
-        <div class="layer-bar" style="background:#6b7280;"></div>
-        <div class="layer-content">
-          <div class="layer-name">Observability & Monitoring</div>
-          <div class="layer-desc">Latency tracking, hallucination detection, cost metering, alerting</div>
-        </div>
-        <span class="layer-tag" style="background:#f4f4f5;color:#6b7280;border:1px solid #e4e4e7;">Health Check</span>
-      </div>
-      <div class="stack-layer">
-        <div class="layer-num">01</div>
-        <div class="layer-bar" style="background:#047857;"></div>
-        <div class="layer-content">
-          <div class="layer-name">Data & Infrastructure</div>
-          <div class="layer-desc">Vector DBs, object storage, compute clusters, data pipelines</div>
-        </div>
-        <span class="layer-tag" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">Foundation</span>
-      </div>
-    </div>
-    <p>Today we go deep on <strong>Layer 04 — RAG</strong> and <strong>Layer 03 — LLMs & SLMs</strong>. These are where the most interesting engineering decisions live, and where the biggest misconceptions exist.</p>
-
-    <!-- FLOW CHART PNG -->
-    <div class="diagram-wrap">
-      <img src="./static/flow_chart.png" alt="AI Stack Flow Diagram" class="diagram-img"/>
-      <button class="fullscreen-btn" onclick="openFullscreen()" title="View fullscreen">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-        </svg>
-        Fullscreen
-      </button>
-    </div>
-
-    <!-- FULLSCREEN OVERLAY -->
-    <div class="fs-overlay" id="fsOverlay" onclick="closeFullscreen()">
-      <button class="fs-close" onclick="closeFullscreen()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-        Close
-      </button>
-      <img src="./static/flow_chart.png" alt="AI Stack Flow Diagram" class="fs-img"/>
     </div>
   </section>
 
-  <!-- RESTAURANT -->
+  <!-- SECTION 02: AI WORLD EVOLUTION -->
+  <section class="section" id="evolution">
+    <div class="section-label">02 · The Evolution</div>
+    <h2>Why the Stack Got This Complex</h2>
+    <div class="section-sub">Every layer of the Modern AI Stack exists because a previous era hit a wall</div>
+    <p>The Modern AI Stack didn't appear overnight. Each layer — the gateway, the orchestrator, the vector database, the model — was added to solve a specific problem that the previous generation of AI simply couldn't handle. Understanding this progression tells you <strong>why each layer exists</strong>, not just what it does.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#94a3b8;"></div>
+        <div class="timeline-content">
+          <div class="timeline-era" style="color:#64748b;">1980s – 1990s</div>
+          <div class="timeline-title">Rule-Based AI</div>
+          <p class="timeline-desc">Hand-crafted rules, expert systems, decision trees. If this then that. Brittle, expensive to maintain, impossible to scale. <strong>The wall it hit:</strong> couldn't handle ambiguity or learn from new data.</p>
+          <div class="timeline-tags">
+            <span class="ttag">Expert Systems</span><span class="ttag">Decision Trees</span><span class="ttag">LISP / Prolog</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">→ Led to: ML models that learn</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#60a5fa;"></div>
+        <div class="timeline-content">
+          <div class="timeline-era" style="color:#2563eb;">2000s – 2012</div>
+          <div class="timeline-title">Classical Machine Learning</div>
+          <p class="timeline-desc">Models learned patterns from data. Feature engineering was everything — humans still decided what the model should look at. <strong>The wall it hit:</strong> couldn't process raw unstructured data like images, text, or audio.</p>
+          <div class="timeline-tags">
+            <span class="ttag">SVM</span><span class="ttag">Random Forest</span><span class="ttag">XGBoost</span><span class="ttag">Feature Engineering</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">→ Led to: deep learning on raw data</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#a78bfa;"></div>
+        <div class="timeline-content">
+          <div class="timeline-era" style="color:#7c3aed;">2012 – 2017</div>
+          <div class="timeline-title">Deep Learning Revolution</div>
+          <p class="timeline-desc">Neural networks learned their own features. GPUs unlocked scale. Vision and speech were transformed. <strong>The wall it hit:</strong> each model was task-specific — you needed a separate model for every single problem.</p>
+          <div class="timeline-tags">
+            <span class="ttag">CNNs</span><span class="ttag">RNNs</span><span class="ttag">AlexNet</span><span class="ttag">TensorFlow</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">→ Led to: foundation models trained once, used everywhere</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#fb923c;"></div>
+        <div class="timeline-content">
+          <div class="timeline-era" style="color:#ea580c;">2017 – 2022</div>
+          <div class="timeline-title">The Transformer Era</div>
+          <p class="timeline-desc">"Attention is All You Need" changed everything. LLMs could understand context at scale — BERT, GPT-2, the foundations of modern NLP. <strong>The wall it hit:</strong> LLMs were trained on public data and knew nothing about your private, real-time organisational knowledge.</p>
+          <div class="timeline-tags">
+            <span class="ttag">Transformers</span><span class="ttag">BERT</span><span class="ttag">GPT-2</span><span class="ttag">Attention</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">→ Led to: RAG & vector databases</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#34d399;"></div>
+        <div class="timeline-content">
+          <div class="timeline-era" style="color:#047857;">2022 – 2024</div>
+          <div class="timeline-title">LLMs Go Public + RAG Emerges</div>
+          <p class="timeline-desc">ChatGPT reached 100 million users in 60 days. RAG solved the private data problem. But LLMs could still only answer questions — they couldn't take actions, use tools, or complete multi-step tasks autonomously. <strong>The wall it hit:</strong> passive intelligence isn't enough for real enterprise workflows.</p>
+          <div class="timeline-tags">
+            <span class="ttag">GPT-4</span><span class="ttag">Claude</span><span class="ttag">RAG</span><span class="ttag">Prompt Engineering</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">→ Led to: Agentic AI</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#1a56db;box-shadow:0 0 0 4px rgba(26,86,219,0.15);"></div>
+        <div class="timeline-content" style="border-color:#bfdbfe;background:#f0f7ff;">
+          <div class="timeline-era" style="color:#1a56db;">2024 – Present</div>
+          <div class="timeline-title" style="color:#1a56db;">Agentic AI & The Full Stack <span style="font-size:0.72rem;font-weight:700;background:#1a56db;color:#fff;padding:0.15rem 0.55rem;border-radius:999px;margin-left:0.5rem;vertical-align:middle;">We are here</span></div>
+          <p class="timeline-desc">AI moves from answering questions to taking actions. Multi-agent systems, orchestration layers, RAG pipelines, safety gateways, and observability systems all become essential engineering infrastructure. <strong>This is what the Modern AI Stack is.</strong> Every layer we'll discuss today exists because of this evolution.</p>
+          <div class="timeline-tags">
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">Agentic AI</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">Multi-Agent Systems</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">RAG</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">Orchestration</span>
+            <span class="ttag" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">Production AI Stacks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:2rem;">
+      <div class="callout-label">So what does this era's AI system actually look like?</div>
+      <p>All of these breakthroughs — transformers, LLMs, embeddings, agents — live somewhere inside a structured system. That system has layers. Each layer has a job. Understanding how they fit together is exactly what we're going to do next.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 03: THE MENTAL MODEL — RESTAURANT ANALOGY -->
   <section class="section" id="analogy">
-    <div class="section-label">03 · Mental Model</div>
+    <div class="section-label">03 · The Mental Model</div>
     <h2>Think of it as a High-End Restaurant</h2>
-    <div class="section-sub">Every component has exactly one job. No single component does everything.</div>
+    <div class="section-sub">Before we name the layers — let's make sure the mental model is locked in</div>
+    <p>Before we name each layer technically, let's install the right mental model. Because once this analogy clicks, every technical term that follows will make immediate sense.</p>
     <p>Stop thinking of an AI system as one magical brain. Think of it as a <em>coordinated kitchen</em> — multiple specialists, each doing exactly one thing well, in a precise sequence.</p>
 
     <!-- RESTAURANT SVG ILLUSTRATION -->
     <div class="restaurant-illustration">
       <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" width="820" height="220" font-family="Inter, sans-serif">
-
-        <!-- Background lane -->
         <rect x="10" y="10" width="800" height="200" rx="14" fill="#f8f9fb" stroke="#e2e4e9" stroke-width="1.5"/>
-
-        <!-- Flow arrows between boxes -->
-        <!-- User -> Waiter -->
         <path d="M 118 110 L 158 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
-        <!-- Waiter -> Manager -->
         <path d="M 268 110 L 308 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
-        <!-- Manager -> Pantry -->
         <path d="M 418 110 L 458 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
-        <!-- Pantry -> Chef -->
         <path d="M 568 110 L 608 110" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
-        <!-- Chef -> Response (right edge) -->
         <path d="M 718 110 L 758 110" stroke="#1a56db" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowBlue)"/>
-
-        <!-- Arrow markers -->
         <defs>
           <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
             <path d="M0,0 L0,6 L8,3 z" fill="#d1d5db"/>
@@ -689,46 +897,32 @@
             <path d="M0,0 L0,6 L8,3 z" fill="#1a56db"/>
           </marker>
         </defs>
-
-        <!-- USER box -->
         <rect x="24" y="78" width="94" height="64" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
         <text x="71" y="106" text-anchor="middle" font-size="22">👤</text>
         <text x="71" y="126" text-anchor="middle" font-size="11" fill="#475569" font-weight="600">User</text>
         <text x="71" y="140" text-anchor="middle" font-size="10" fill="#94a3b8">Query</text>
-
-        <!-- WAITER box -->
         <rect x="158" y="60" width="110" height="100" rx="10" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
         <text x="213" y="97" text-anchor="middle" font-size="24">🧑‍💼</text>
         <text x="213" y="120" text-anchor="middle" font-size="11" fill="#b91c1c" font-weight="700">The Waiter</text>
         <text x="213" y="136" text-anchor="middle" font-size="10" fill="#b91c1c">API Gateway</text>
         <text x="213" y="150" text-anchor="middle" font-size="9.5" fill="#b91c1c">Auth · Safety</text>
-
-        <!-- MANAGER box -->
         <rect x="308" y="60" width="110" height="100" rx="10" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
         <text x="363" y="97" text-anchor="middle" font-size="24">👨‍🍳</text>
         <text x="363" y="120" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">Kitchen Mgr</text>
         <text x="363" y="136" text-anchor="middle" font-size="10" fill="#b45309">Orchestrator</text>
         <text x="363" y="150" text-anchor="middle" font-size="9.5" fill="#b45309">Routes · Plans</text>
-
-        <!-- PANTRY box -->
         <rect x="458" y="60" width="110" height="100" rx="10" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
         <text x="513" y="97" text-anchor="middle" font-size="24">🗄️</text>
         <text x="513" y="120" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="700">The Pantry</text>
         <text x="513" y="136" text-anchor="middle" font-size="10" fill="#7c3aed">Vector DB · RAG</text>
         <text x="513" y="150" text-anchor="middle" font-size="9.5" fill="#7c3aed">Private Data</text>
-
-        <!-- CHEF box -->
         <rect x="608" y="60" width="110" height="100" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
         <text x="663" y="97" text-anchor="middle" font-size="24">🔪</text>
         <text x="663" y="120" text-anchor="middle" font-size="11" fill="#1a56db" font-weight="700">The Chef</text>
         <text x="663" y="136" text-anchor="middle" font-size="10" fill="#1a56db">LLM / SLM</text>
         <text x="663" y="150" text-anchor="middle" font-size="9.5" fill="#1a56db">Generates Answer</text>
-
-        <!-- Response label at right -->
         <text x="770" y="105" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="600">AI</text>
         <text x="770" y="118" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="600">Response</text>
-
-        <!-- Bottom label -->
         <text x="410" y="195" text-anchor="middle" font-size="10.5" fill="#9ca3af" font-style="italic">Every user query travels through all these layers before getting a response</text>
       </svg>
     </div>
@@ -762,11 +956,321 @@
       <div class="callout-label">The key insight</div>
       <p>A restaurant fails not because the chef is bad — it fails because the waiter took the wrong order, the pantry ran out of ingredients, or the manager lost track of a table. AI systems fail exactly the same way.</p>
     </div>
+    <p style="margin-top:1.5rem;">Now that the mental model is in place — let's replace each restaurant role with its real technical name and go a level deeper into what each one actually does.</p>
+  </section>
+
+  <!-- SECTION 04: THE STACK -->
+  <section class="section" id="stack">
+    <div class="section-label">04 · The Stack</div>
+    <h2>The 7 Layers Between a Click and a Response</h2>
+    <div class="section-sub">Grouped by architectural responsibility — click any layer to expand details</div>
+    <p>You've studied the OSI model in networking — seven layers, each with a specific job. A modern AI system works the same way. When a user types a question and hits send, here is what actually happens underneath.</p>
+
+    <!-- LAYER GROUPS -->
+    <div class="layer-groups">
+
+      <!-- APPLICATION LAYER -->
+      <div class="layer-group">
+        <div class="layer-group-label" style="color:#6b7280;border-color:#e4e4e7;background:#f9fafb;">🖥️ Application Layer</div>
+        <div class="layer-group-desc">The surface the user sees. Everything below is invisible to them.</div>
+      </div>
+      <div class="stack-diagram" style="margin:0 0 1.5rem;">
+        <div class="stack-layer expandable" onclick="toggleLayer('l07')">
+          <div class="layer-num">07</div>
+          <div class="layer-bar" style="background:#d1d5db;"></div>
+          <div class="layer-content">
+            <div class="layer-name">User Interface</div>
+            <div class="layer-desc">The chat window, mobile app, or API call the user interacts with</div>
+          </div>
+          <span class="layer-tag" style="background:#f4f4f5;color:#71717a;border:1px solid #e4e4e7;">Frontend</span>
+          <span class="expand-icon" id="icon-l07">＋</span>
+        </div>
+        <div class="layer-detail" id="l07">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">The only layer the end user ever sees. It captures user input, renders the AI's response, and manages the conversation state. A well-designed UI hides all complexity of the layers beneath it.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>React / Next.js</span><span>Streamlit</span><span>Gradio</span><span>Flutter</span><span>REST API clients</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">The ChatGPT web interface, a mobile banking chatbot, or a Streamlit dashboard that lets analysts query internal documents using natural language.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">Poor streaming UX, no loading states, exposing raw errors to users, or not handling partial responses — all destroy the user's perception of AI quality even when the model is performing perfectly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GATEWAY LAYER -->
+      <div class="layer-group">
+        <div class="layer-group-label" style="color:#b91c1c;border-color:#fecaca;background:#fef9f9;">🔐 Gateway Layer</div>
+        <div class="layer-group-desc">The security and routing boundary. Every request is validated, filtered, and directed before it reaches any AI component.</div>
+      </div>
+      <div class="stack-diagram" style="margin:0 0 1.5rem;">
+        <div class="stack-layer expandable" onclick="toggleLayer('l06')">
+          <div class="layer-num">06</div>
+          <div class="layer-bar" style="background:#b91c1c;"></div>
+          <div class="layer-content">
+            <div class="layer-name">API Gateway / Semantic Gateway</div>
+            <div class="layer-desc">Auth, rate limiting, prompt safety checks, intelligent routing</div>
+          </div>
+          <span class="layer-tag" style="background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;">The Waiter</span>
+          <span class="expand-icon" id="icon-l06">＋</span>
+        </div>
+        <div class="layer-detail" id="l06">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">Acts as the front door for every AI request. Authenticates the caller, enforces rate limits, scans prompts for unsafe content, and routes traffic to the right downstream service. In enterprise systems, this layer also logs every request for audit trails.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>Azure API Management</span><span>Kong Gateway</span><span>AWS API Gateway</span><span>NGINX</span><span>Portkey</span><span>LiteLLM</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">At Mastercard, every AI service request passes through a semantic gateway that validates the caller's permissions, checks the prompt against compliance rules, and routes to either a cloud LLM or an on-premise model depending on data classification.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">Missing rate limits lead to cost explosions. No prompt sanitisation leads to injection attacks. Poor routing logic sends sensitive data to external models when it should stay on-premise.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORCHESTRATION LAYER -->
+      <div class="layer-group">
+        <div class="layer-group-label" style="color:#b45309;border-color:#fde68a;background:#fffdf0;">🎯 Orchestration Layer</div>
+        <div class="layer-group-desc">The brain of coordination. Decides which model to call, which data to fetch, and in what order — especially critical for multi-step and agentic workflows.</div>
+      </div>
+      <div class="stack-diagram" style="margin:0 0 1.5rem;">
+        <div class="stack-layer expandable" onclick="toggleLayer('l05')">
+          <div class="layer-num">05</div>
+          <div class="layer-bar" style="background:#b45309;"></div>
+          <div class="layer-content">
+            <div class="layer-name">Orchestration Layer</div>
+            <div class="layer-desc">Coordinates which model, which tools, which data sources to involve</div>
+          </div>
+          <span class="layer-tag" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">Kitchen Manager</span>
+          <span class="expand-icon" id="icon-l05">＋</span>
+        </div>
+        <div class="layer-detail" id="l05">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">Manages the flow of a complex AI task. For a simple Q&A, it routes directly to the model. For an agentic task — "analyse this document, search the web, and write a report" — it plans and sequences multiple tool calls, handles retries, and assembles the final output.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>LangChain</span><span>LlamaIndex</span><span>AutoGen</span><span>CrewAI</span><span>Semantic Kernel</span><span>DSPy</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">A clinical documentation AI that, upon receiving a doctor's voice note, simultaneously triggers a medical NER model, queries the patient's RAG store, validates against HIPAA rules, and formats the final structured note — all orchestrated in sequence.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">Infinite loops in agentic tasks, no timeout handling, poor error propagation between tool calls, and context window overflow when passing too much state between steps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA LAYER -->
+      <div class="layer-group">
+        <div class="layer-group-label" style="color:#7c3aed;border-color:#ddd6fe;background:#faf8ff;">🗄️ Data Layer</div>
+        <div class="layer-group-desc">Where private, real-time, and proprietary knowledge lives. RAG operates here — bridging the gap between what the model was trained on and what your organisation actually knows today.</div>
+      </div>
+      <div class="stack-diagram" style="margin:0 0 1.5rem;">
+        <div class="stack-layer expandable" onclick="toggleLayer('l04')">
+          <div class="layer-num">04</div>
+          <div class="layer-bar" style="background:#7c3aed;"></div>
+          <div class="layer-content">
+            <div class="layer-name">Retrieval Layer (RAG)</div>
+            <div class="layer-desc">Fetches relevant private or real-time data before the model sees the query</div>
+          </div>
+          <span class="layer-tag" style="background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe;">The Pantry</span>
+          <span class="expand-icon" id="icon-l04">＋</span>
+        </div>
+        <div class="layer-detail" id="l04">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">Converts your private documents into vector embeddings and stores them in a vector database. At query time, it finds the most semantically relevant chunks and injects them into the prompt — giving the LLM grounded, organisation-specific context it was never trained on.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>Pinecone</span><span>Weaviate</span><span>Chroma</span><span>Azure AI Search</span><span>FAISS</span><span>pgvector</span><span>OpenAI Embeddings</span><span>sentence-transformers</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">An internal Mastercard AI assistant that can answer questions about internal policies updated yesterday — without any model retraining. The policy PDFs live in the vector store; the LLM retrieves and reasons over them at query time.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">Poor chunking strategy (too large = noisy context, too small = lost context), stale embeddings after document updates, and retrieval returning semantically similar but factually wrong chunks — leading to confident wrong answers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODEL LAYER -->
+      <div class="layer-group">
+        <div class="layer-group-label" style="color:#1a56db;border-color:#bfdbfe;background:#f0f6ff;">🧠 Model Layer</div>
+        <div class="layer-group-desc">The intelligence engine. Just one layer of seven — yet often mistakenly treated as the entire system. The model generates responses but depends entirely on every layer above it to receive the right input.</div>
+      </div>
+      <div class="stack-diagram" style="margin:0 0 1.5rem;">
+        <div class="stack-layer expandable" onclick="toggleLayer('l03')">
+          <div class="layer-num">03</div>
+          <div class="layer-bar" style="background:#1a56db;"></div>
+          <div class="layer-content">
+            <div class="layer-name">LLM / SLM</div>
+            <div class="layer-desc">The language model generating the response — the Chef, not the whole kitchen</div>
+          </div>
+          <span class="layer-tag" style="background:#eff6ff;color:#1a56db;border:1px solid #bfdbfe;">The Chef</span>
+          <span class="expand-icon" id="icon-l03">＋</span>
+        </div>
+        <div class="layer-detail" id="l03">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">Receives the assembled prompt — user query + retrieved context + system instructions — and generates a response. The choice between an LLM and SLM is a pure engineering tradeoff: accuracy and capability vs. cost, latency, and deployability.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>GPT-4o</span><span>Claude 3.5</span><span>Gemini Pro</span><span>Llama 3</span><span>Mistral</span><span>Phi-3</span><span>Azure OpenAI</span><span>Ollama</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">For Mastercard's customer-facing chatbot handling 10M+ queries per day, we use a fine-tuned SLM for intent classification (fast, cheap, accurate for known patterns) and escalate to a full LLM only for complex, unrecognised queries.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">Hallucination when context is missing or contradictory. Context window overflow on long conversations. Model latency causing timeout cascades. And using a sledgehammer (GPT-4) where a scalpel (Phi-3) would do the job 10x cheaper.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBSERVABILITY & INFRA LAYER -->
+      <div class="layer-group">
+        <div class="layer-group-label" style="color:#047857;border-color:#a7f3d0;background:#f0fdf8;">📊 Observability & Infrastructure Layer</div>
+        <div class="layer-group-desc">The foundation everything runs on. Monitoring catches failures in real time. Infrastructure determines whether the system scales to 10 users or 10 million.</div>
+      </div>
+      <div class="stack-diagram" style="margin:0 0 0;">
+        <div class="stack-layer expandable" onclick="toggleLayer('l02')">
+          <div class="layer-num">02</div>
+          <div class="layer-bar" style="background:#6b7280;"></div>
+          <div class="layer-content">
+            <div class="layer-name">Observability & Monitoring</div>
+            <div class="layer-desc">Latency tracking, hallucination detection, cost metering, alerting</div>
+          </div>
+          <span class="layer-tag" style="background:#f4f4f5;color:#6b7280;border:1px solid #e4e4e7;">Health Check</span>
+          <span class="expand-icon" id="icon-l02">＋</span>
+        </div>
+        <div class="layer-detail" id="l02">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">Logs every request, measures response latency, tracks token usage and cost, detects hallucinations and policy violations, and fires alerts when something degrades. Without this layer, you are flying blind in production.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>LangSmith</span><span>Langfuse</span><span>Arize AI</span><span>Datadog</span><span>Azure Monitor</span><span>Prometheus</span><span>Grafana</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">A dashboard that shows in real time: average response latency by model, cost per query by business unit, hallucination rate (detected via factual consistency checks), and user satisfaction scores — all correlated together.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">No observability means you discover problems from angry users, not from dashboards. Missing cost tracking leads to bill shock. No hallucination monitoring means quietly wrong answers going undetected for weeks.</p>
+            </div>
+          </div>
+        </div>
+        <div class="stack-layer expandable" onclick="toggleLayer('l01')">
+          <div class="layer-num">01</div>
+          <div class="layer-bar" style="background:#047857;"></div>
+          <div class="layer-content">
+            <div class="layer-name">Data & Infrastructure</div>
+            <div class="layer-desc">Vector DBs, object storage, compute clusters, data pipelines</div>
+          </div>
+          <span class="layer-tag" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">Foundation</span>
+          <span class="expand-icon" id="icon-l01">＋</span>
+        </div>
+        <div class="layer-detail" id="l01">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">What it does</div>
+              <p class="detail-text">The physical and logical foundation of the entire stack. Manages where data is stored, how compute is allocated, how models are served at scale, and how data flows between components. This layer determines the cost and scalability ceiling of the entire system.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Tools & Technologies</div>
+              <div class="detail-chips">
+                <span>Azure / AWS / GCP</span><span>Kubernetes</span><span>Ray</span><span>Databricks</span><span>Apache Kafka</span><span>MLflow</span><span>Docker</span><span>NVIDIA GPUs</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Real-world example</div>
+              <p class="detail-text">Serving 700+ predictive models at Mastercard requires a shared inference infrastructure — GPU clusters managed via Kubernetes, model artefacts versioned in MLflow, and real-time feature pipelines running on Kafka — all abstracted away from the application teams above.</p>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">What breaks here</div>
+              <p class="detail-text">Under-provisioned GPU clusters causing inference queues. No model versioning leading to silent regressions. Data pipeline failures starving the RAG layer of fresh documents. Cold start latency when serverless functions spin up for the first time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:2rem;">Today we go deep on <strong>Layer 04 — RAG</strong> and <strong>Layer 03 — LLMs & SLMs</strong>. These are where the most interesting engineering decisions live, and where the biggest misconceptions exist.</p>
+
+    <!-- FLOW CHART PNG -->
+    <div class="diagram-wrap">
+      <img src="./static/flow_chart.png" alt="AI Stack Flow Diagram" class="diagram-img"/>
+      <button class="fullscreen-btn" onclick="openFullscreen()" title="View fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        Fullscreen
+      </button>
+    </div>
+
+    <!-- FULLSCREEN OVERLAY -->
+    <div class="fs-overlay" id="fsOverlay" onclick="closeFullscreen()">
+      <button class="fs-close" onclick="closeFullscreen()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+        Close
+      </button>
+      <img src="./static/flow_chart.png" alt="AI Stack Flow Diagram" class="fs-img"/>
+    </div>
   </section>
 
   <!-- LLMs & SLMs -->
   <section class="section" id="llms">
-    <div class="section-label">04 · LLMs & SLMs</div>
+    <div class="section-label">05 · LLMs & SLMs</div>
     <h2>LLMs and SLMs — What They Actually Are</h2>
     <div class="section-sub">No math. Just the right mental model for an engineer.</div>
     <p>A Large Language Model is, at its core, a <em>very well-read autocomplete</em>. It has read a significant portion of the internet, learned the statistical patterns of human language, and became extraordinarily good at predicting what word comes next — with context, at scale, and with surprising coherence.</p>
@@ -796,11 +1300,16 @@
       </div>
     </div>
     <p>At Mastercard, this is a real conversation we have for every AI feature: <em>does this need a large model, or can a smaller, fine-tuned model do the job cheaper and faster?</em> The answer changes everything — cost, latency, infrastructure footprint, and compliance posture.</p>
+
+    <div class="callout" style="border-left-color:var(--accent2);">
+      <div class="callout-label" style="color:var(--accent2);">Prompt Engineering — how you talk to the model</div>
+      <p>You can't discuss the model layer without mentioning how you communicate with it. <strong>Prompt Engineering</strong> is the discipline of crafting inputs that reliably produce the outputs you need. A poorly structured prompt to a powerful LLM gives worse results than a well-structured prompt to a smaller one. In production systems, prompts are version-controlled, tested, and monitored just like code. Think of it as the API contract between your application and the model.</p>
+    </div>
   </section>
 
   <!-- RAG -->
   <section class="section" id="rag">
-    <div class="section-label">05 · RAG</div>
+    <div class="section-label">06 · RAG</div>
     <h2>RAG — How Industry Makes LLMs Work with Real Data</h2>
     <div class="section-sub">Retrieval Augmented Generation — the architecture that closes the gap</div>
     <p>LLMs are powerful but frozen. The naive answer is fine-tuning — retrain the model on your data. This sounds correct but is almost always the wrong engineering decision. It's expensive, slow, and in domains like banking or healthcare where data changes continuously, it simply doesn't scale.</p>
@@ -864,46 +1373,104 @@
     </div>
   </section>
 
-  <!-- BRIDGE -->
-  <section class="section" id="bridge">
-    <div class="section-label">06 · Curriculum Connection</div>
-    <h2>You Already Know More Than You Think</h2>
-    <div class="section-sub">Every subject you are studying connects directly to this stack</div>
-    <p>The fundamentals being built in your degree are the foundation of every system described here. These are not separate worlds — they are the same engineering principles applied at different layers of the same stack.</p>
-    <div class="bridge-grid">
-      <div class="bridge-card">
-        <div class="bridge-subject">DSA</div>
-        <p class="bridge-text">Your search algorithms are the conceptual foundation of vector similarity search — the core of how RAG retrieves the right context at scale.</p>
+  <!-- AGENTS -->
+  <section class="section" id="agents">
+    <div class="section-label">07 · Agentic AI</div>
+    <h2>From Knowledge to Action — Introducing Agents</h2>
+    <div class="section-sub">RAG gives the LLM knowledge. Agents give it the ability to act.</div>
+
+    <p>RAG solved one problem — an LLM that knows your data. But there is a second, deeper problem: <strong>knowing is not the same as doing.</strong> An LLM with RAG can tell you the answer. An Agent can go and do something about it.</p>
+
+    <div class="callout">
+      <div class="callout-label">The fundamental shift</div>
+      <p>A RAG system <strong>answers a question.</strong> An Agent <strong>completes a task</strong> — by planning steps, calling tools, observing results, and deciding what to do next. It is the difference between a reference book and a junior engineer.</p>
+    </div>
+
+    <p>Three things make an Agent different from a plain LLM or RAG system:</p>
+
+    <div class="agent-grid">
+      <div class="agent-card">
+        <div class="agent-icon">🧠</div>
+        <div class="agent-title">Reasoning</div>
+        <p class="agent-desc">The agent can break a complex task into sub-steps, decide which step to take next, and change course when something doesn't work. It thinks before it acts.</p>
+        <div class="agent-example">Example: "Summarise this document, find related policies, and draft a compliance report" — the agent figures out the sequence itself.</div>
       </div>
-      <div class="bridge-card">
-        <div class="bridge-subject">Operating Systems</div>
-        <p class="bridge-text">How your OS manages memory and schedules processes maps directly to how GPU clusters and batch inference jobs are orchestrated in production.</p>
+      <div class="agent-card">
+        <div class="agent-icon">🔧</div>
+        <div class="agent-title">Tool Use</div>
+        <p class="agent-desc">Agents can call external tools — search the web, run code, query a database, send an email, call an API. The LLM decides which tool to use and when.</p>
+        <div class="agent-example">Example: At Mastercard, an agent that detects a suspicious transaction can query the customer profile, check historical patterns, and flag for review — all autonomously.</div>
       </div>
-      <div class="bridge-card">
-        <div class="bridge-subject">Computer Networks</div>
-        <p class="bridge-text">The API Gateway layer is pure networking — HTTP, rate limiting, load balancing. Every concept from your networking course lives here.</p>
+      <div class="agent-card">
+        <div class="agent-icon">💾</div>
+        <div class="agent-title">Memory</div>
+        <p class="agent-desc">Agents maintain context across steps — short-term (within a task) and long-term (across sessions). This is what makes multi-turn, stateful workflows possible.</p>
+        <div class="agent-example">Example: A clinical AI agent that remembers a patient's history across multiple consultations, not just the current query.</div>
       </div>
-      <div class="bridge-card">
-        <div class="bridge-subject">DBMS</div>
-        <p class="bridge-text">Vector databases are built on the same indexing and query optimisation principles you are learning. Understanding DBMS makes RAG storage intuitive.</p>
+    </div>
+
+    <!-- AGENT VS RAG COMPARISON -->
+    <div class="ps-list" style="margin-top:2rem;">
+      <div class="ps-card">
+        <div>
+          <div class="ps-label" style="color:var(--accent2);">RAG System</div>
+          <div class="ps-text">User asks a question → retrieve context → LLM answers → done. One round trip. Passive.</div>
+        </div>
+        <div class="ps-arrow">vs</div>
+        <div>
+          <div class="ps-label" style="color:var(--accent);">Agent System</div>
+          <div class="ps-text">User gives a goal → agent plans → calls tools → observes results → replans → completes task. Multiple loops. Active.</div>
+        </div>
       </div>
-      <div class="bridge-card">
-        <div class="bridge-subject">Machine Learning</div>
-        <p class="bridge-text">Embeddings — the heart of RAG — are learned representations from neural networks. Your ML fundamentals explain precisely how they are trained and why they work.</p>
-      </div>
-      <div class="bridge-card">
-        <div class="bridge-subject">Software Engineering</div>
-        <p class="bridge-text">Every layer of this stack is a microservice. Clean interfaces, separation of concerns, API design — SE principles keep these systems maintainable at scale.</p>
-      </div>
+    </div>
+
+    <!-- AGENT LOOP SVG -->
+    <div class="restaurant-illustration" style="margin-top:1.75rem;">
+      <svg viewBox="0 0 740 160" xmlns="http://www.w3.org/2000/svg" width="740" height="160" font-family="Inter, sans-serif">
+        <rect x="10" y="10" width="720" height="140" rx="14" fill="#f8f9fb" stroke="#e2e4e9" stroke-width="1.5"/>
+        <!-- boxes -->
+        <rect x="30" y="55" width="110" height="50" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="85" y="77" text-anchor="middle" font-size="11" fill="#1a56db" font-weight="700">User Goal</text>
+        <text x="85" y="93" text-anchor="middle" font-size="10" fill="#1a56db">"Write a report"</text>
+        <rect x="185" y="55" width="110" height="50" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+        <text x="240" y="77" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">Plan</text>
+        <text x="240" y="93" text-anchor="middle" font-size="10" fill="#b45309">Break into steps</text>
+        <rect x="340" y="55" width="110" height="50" rx="8" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+        <text x="395" y="77" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="700">Act</text>
+        <text x="395" y="93" text-anchor="middle" font-size="10" fill="#7c3aed">Call tools / RAG</text>
+        <rect x="495" y="55" width="110" height="50" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+        <text x="550" y="77" text-anchor="middle" font-size="11" fill="#b91c1c" font-weight="700">Observe</text>
+        <text x="550" y="93" text-anchor="middle" font-size="10" fill="#b91c1c">Check result</text>
+        <rect x="620" y="55" width="90" height="50" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+        <text x="665" y="77" text-anchor="middle" font-size="11" fill="#047857" font-weight="700">Done?</text>
+        <text x="665" y="93" text-anchor="middle" font-size="10" fill="#047857">Yes → respond</text>
+        <!-- arrows -->
+        <path d="M 140 80 L 183 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+        <path d="M 295 80 L 338 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+        <path d="M 450 80 L 493 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+        <path d="M 605 80 L 618 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+        <!-- loop back arrow -->
+        <path d="M 550 107 Q 550 135 395 135 Q 240 135 240 107" stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#a3)"/>
+        <text x="395" y="148" text-anchor="middle" font-size="9.5" fill="#7c3aed">No → replan and try again</text>
+        <defs>
+          <marker id="a2" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#d1d5db"/></marker>
+          <marker id="a3" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#7c3aed"/></marker>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="callout" style="margin-top:1.75rem;">
+      <div class="callout-label">Where this is going — Session 2</div>
+      <p>Today we built a RAG system — you now understand Layer 04 of the stack deeply. The next session goes one level further: we build an agent that uses RAG as one of its tools, adds memory, and completes a multi-step task autonomously. That is where the real engineering challenge begins.</p>
     </div>
   </section>
 
   <!-- DEMO -->
   <section class="section" id="demo">
-    <div class="section-label">07 · Live Demo</div>
+    <div class="section-label">08 · Live Demo</div>
     <h2>Building a Minimal RAG Pipeline</h2>
     <div class="section-sub">A working system in under 30 lines of Python — same architecture as production</div>
-    <p>Theory is useful. A working system is better. The notebook below walks through a minimal but complete RAG pipeline — stripped to its essential moving parts so the architecture is fully visible without noise.</p>
+    <p>We've talked about RAG conceptually — Retrieve, Augment, Generate. Now let's build one. In under 30 lines of Python, we'll construct the exact same architecture that powers enterprise AI systems — just stripped to its essential moving parts so every step is visible.</p>
     <div class="notebook-cta">
       <div>
         <div class="nb-label">Google Colab Notebook</div>
@@ -923,21 +1490,25 @@
 
   <!-- TAKEAWAYS -->
   <section class="section" id="takeaways">
-    <div class="section-label">08 · Close</div>
+    <div class="section-label">09 · Close</div>
     <h2>Your 2-Year Runway</h2>
     <div class="section-sub">Three things to do this week — not someday, this week</div>
-    <p>The engineers who understand the full stack — not just the model — are the ones who build things that survive contact with reality.</p>
+
+    <p>Before the actions — one thing that might surprise you. <strong>Everything we covered today maps directly to subjects you are already studying.</strong> DSA lives in the vector search algorithm. Computer Networks lives in the API Gateway. DBMS lives in the vector store. OS lives in the GPU cluster management. ML lives in the embeddings. Software Engineering lives in every microservice layer. These are not separate worlds — the stack is built from the same fundamentals your degree is teaching you. The difference is knowing how they connect.</p>
+
+    <p>Now here is what to do with all of this:</p>
+
     <ul class="takeaway-list">
       <li>
         <div>
-          <div class="tw-title">Build and deploy one RAG demo</div>
-          <p class="tw-desc">Use the Colab notebook. Swap in your own data. Push it to Hugging Face Spaces — free and public. You now have a live deployed AI system on your resume. Not a notebook. A deployed product.</p>
+          <div class="tw-title">Build and deploy one RAG demo this week</div>
+          <p class="tw-desc">Use the Colab notebook. Swap in your own data — your semester notes, a research paper, anything. Push it to Hugging Face Spaces — free and public. You now have a live deployed AI system on your resume. Not a notebook. A deployed product.</p>
         </div>
       </li>
       <li>
         <div>
           <div class="tw-title">Follow one practitioner, not one researcher</div>
-          <p class="tw-desc">Researchers publish papers. Practitioners ship systems and write about what broke. Find engineers at companies you admire on LinkedIn and read what they share.</p>
+          <p class="tw-desc">Researchers publish papers. Practitioners ship systems and write about what broke. Find engineers at companies you admire on LinkedIn and read what they share. That is your real curriculum supplement.</p>
         </div>
       </li>
       <li>
@@ -962,6 +1533,15 @@
 
 </body>
 <script>
+  function toggleLayer(id) {
+    const detail = document.getElementById(id);
+    const icon = document.getElementById('icon-' + id);
+    const isOpen = detail.classList.contains('open');
+    detail.classList.toggle('open', !isOpen);
+    icon.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '＋' : '×';
+  }
+
   function openFullscreen() {
     document.getElementById('fsOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
