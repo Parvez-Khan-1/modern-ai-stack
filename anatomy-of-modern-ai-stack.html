@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anatomy of a Modern AI Stack — Karan | Principal AI Engineer, Mastercard</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #00d4aa;
+      --accent2: #7c6af7;
+      --accent3: #f7a26a;
+      --text: #e2e2f0;
+      --muted: #6b6b8a;
+      --code-bg: #13131f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    h1 .highlight {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-abstract {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.9;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .meta-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      margin-left: 0.25rem;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 8rem;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-number::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    p { margin-bottom: 1.4rem; color: #c8c8e0; }
+
+    strong { color: var(--text); font-weight: 500; }
+
+    em { color: var(--accent3); font-style: italic; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--code-bg);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .callout-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .callout p { margin: 0; color: var(--text); font-size: 1rem; }
+
+    /* PROBLEM/SOLUTION */
+    .problem-solution {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .ps-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .ps-problem { color: #f06b6b; font-size: 0.95rem; }
+    .ps-arrow {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+    .ps-solution { color: var(--accent); font-size: 0.95rem; }
+
+    .ps-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    /* RESTAURANT ANALOGY */
+    .restaurant-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .restaurant-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .restaurant-card:hover { border-color: var(--accent2); }
+
+    .restaurant-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+
+    .restaurant-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .restaurant-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .restaurant-tech {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent3);
+      background: rgba(247,162,106,0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid rgba(247,162,106,0.2);
+    }
+
+    /* STACK DIAGRAM */
+    .stack-diagram {
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stack-layer {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1.5rem;
+      transition: background 0.2s;
+      cursor: default;
+    }
+
+    .stack-layer:last-child { border-bottom: none; }
+    .stack-layer:hover { background: var(--surface); }
+
+    .layer-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      min-width: 24px;
+    }
+
+    .layer-bar {
+      width: 4px;
+      height: 36px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .layer-content { flex: 1; }
+
+    .layer-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .layer-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .layer-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* RAG FLOW */
+    .rag-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .rag-step {
+      flex: 1;
+      padding: 1.75rem 1.25rem;
+      background: var(--surface);
+      text-align: center;
+      position: relative;
+    }
+
+    .rag-step:not(:last-child) {
+      border-right: 1px solid var(--border);
+    }
+
+    .rag-step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--border);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .rag-step-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .rag-step-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .rag-step:nth-child(1) .rag-step-name { color: #7c6af7; }
+    .rag-step:nth-child(2) .rag-step-name { color: var(--accent3); }
+    .rag-step:nth-child(3) .rag-step-name { color: var(--accent); }
+
+    /* CURRICULUM BRIDGE */
+    .bridge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .bridge-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .bridge-subject {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .bridge-connection {
+      font-size: 0.88rem;
+      color: #c8c8e0;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* TAKEAWAYS */
+    .takeaway-list {
+      counter-reset: takeaway;
+      list-style: none;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .takeaway-list li {
+      counter-increment: takeaway;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .takeaway-list li::before {
+      content: "0" counter(takeaway);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      min-width: 28px;
+      padding-top: 0.15rem;
+    }
+
+    .takeaway-title {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .takeaway-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* BIO */
+    .bio-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .bio-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .bio-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .bio-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .bio-text {
+      font-size: 0.95rem;
+      color: #c8c8e0;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* NOTEBOOK CTA */
+    .notebook-cta {
+      background: linear-gradient(135deg, rgba(124,106,247,0.1), rgba(0,212,170,0.1));
+      border: 1px solid var(--accent2);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .notebook-cta-text { flex: 1; }
+    .notebook-cta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+    .notebook-cta-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .notebook-cta-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0f;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover { background: #00efc0; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* MISC */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1.5rem 0;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82em;
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: var(--accent3);
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .restaurant-grid { grid-template-columns: 1fr; }
+      .bridge-grid { grid-template-columns: 1fr; }
+      .ps-card { grid-template-columns: 1fr; }
+      .ps-arrow { display: none; }
+      .bio-section { grid-template-columns: 1fr; }
+      .rag-flow { flex-direction: column; }
+      .rag-step:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">karan @ mastercard</div>
+  <ul class="nav-links">
+    <li><a href="#hook">The Gap</a></li>
+    <li><a href="#stack">The Stack</a></li>
+    <li><a href="#llms">LLMs & SLMs</a></li>
+    <li><a href="#rag">RAG</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#takeaways">Takeaways</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Guest Session · SIT Pune · BTech AI/ML · 3rd Year</div>
+  <h1>Anatomy of a<br/><span class="highlight">Modern AI Stack</span></h1>
+  <p class="hero-abstract">
+    Every time you type into an AI and get a response, you see one thing — the answer. But behind that single moment, there are layers of engineering working in perfect coordination. This session goes beyond the model and into the machine.
+  </p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Duration</span>
+      <span class="meta-value">60 minutes</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Speaker</span>
+      <span class="meta-value">Karan</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Principal AI Engineer, Mastercard</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Format</span>
+      <span class="meta-value">Talk + Live Notebook Walkthrough</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll to begin</div>
+</section>
+
+<div class="content">
+
+  <!-- SECTION 1: THE HOOK -->
+  <section class="section" id="hook">
+    <div class="section-number">01 · The Hook · 0–10 mins</div>
+    <h2>The Gap Nobody Tells You About</h2>
+    <div class="section-subtitle">Academic AI vs Production AI — they are not the same subject</div>
+
+    <p>
+      Let me start with a question. <strong>How many of you have trained a machine learning model?</strong> Probably most of you. Now — <strong>how many of you have deployed one to a million real users?</strong> That silence is the gap we're here to talk about.
+    </p>
+
+    <p>
+      Your curriculum is excellent at teaching you <em>how models work</em>. Gradient descent, backpropagation, cross-entropy loss — you understand these. But there is an entirely different discipline that sits between a trained model and a real-world AI product. Nobody teaches it in a classroom. You learn it by shipping things and watching them break at 2am.
+    </p>
+
+    <div class="callout">
+      <div class="callout-label">The hard truth</div>
+      <p>In production, your model is the least of your problems. The data pipelines, the latency, the hallucinations, the cost, the monitoring — that's where engineers live.</p>
+    </div>
+
+    <p>
+      I've spent 10 years on the production side of this. At Mastercard, I oversee 700+ predictive models running live. I've seen beautiful Jupyter notebooks fail spectacularly in the real world — not because the model was wrong, but because everything around it wasn't engineered properly.
+    </p>
+
+    <p>
+      Today I'm going to show you what that "everything around it" looks like. Not theory. The actual stack.
+    </p>
+  </section>
+
+  <!-- SECTION 2: THE STACK -->
+  <section class="section" id="stack">
+    <div class="section-number">02 · The Stack · 10–25 mins</div>
+    <h2>The 7 Layers Between a User's Click and an AI's Response</h2>
+    <div class="section-subtitle">Think of this as the OSI model — but for AI systems</div>
+
+    <p>
+      You've studied the OSI model in networking — seven layers, each with a specific job, each talking to the one above and below it. A modern AI system works the same way. When a user types a question and hits send, here's what actually happens.
+    </p>
+
+    <div class="stack-diagram">
+      <div class="stack-layer">
+        <div class="layer-num">07</div>
+        <div class="layer-bar" style="background:#e2e2f0;"></div>
+        <div class="layer-content">
+          <div class="layer-name">User Interface</div>
+          <div class="layer-desc">The chat window, mobile app, or API call</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(226,226,240,0.08);color:#e2e2f0;border:1px solid rgba(226,226,240,0.15);">Frontend</span>
+      </div>
+      <div class="stack-layer">
+        <div class="layer-num">06</div>
+        <div class="layer-bar" style="background:#f06b6b;"></div>
+        <div class="layer-content">
+          <div class="layer-name">API Gateway / Semantic Gateway</div>
+          <div class="layer-desc">Auth, rate limiting, prompt safety, routing</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(240,107,107,0.08);color:#f06b6b;border:1px solid rgba(240,107,107,0.2);">The Waiter</span>
+      </div>
+      <div class="stack-layer">
+        <div class="layer-num">05</div>
+        <div class="layer-bar" style="background:#f7a26a;"></div>
+        <div class="layer-content">
+          <div class="layer-name">Orchestration Layer</div>
+          <div class="layer-desc">Decides which model, which tools, which data sources to involve</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(247,162,106,0.08);color:#f7a26a;border:1px solid rgba(247,162,106,0.2);">Kitchen Manager</span>
+      </div>
+      <div class="stack-layer">
+        <div class="layer-num">04</div>
+        <div class="layer-bar" style="background:#7c6af7;"></div>
+        <div class="layer-content">
+          <div class="layer-name">Retrieval Layer (RAG)</div>
+          <div class="layer-desc">Fetches relevant private/real-time data before the model sees the query</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(124,106,247,0.08);color:#7c6af7;border:1px solid rgba(124,106,247,0.2);">The Pantry</span>
+      </div>
+      <div class="stack-layer">
+        <div class="layer-num">03</div>
+        <div class="layer-bar" style="background:#00d4aa;"></div>
+        <div class="layer-content">
+          <div class="layer-name">LLM / SLM (The Model)</div>
+          <div class="layer-desc">The actual language model generating the response</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(0,212,170,0.08);color:#00d4aa;border:1px solid rgba(0,212,170,0.2);">The Chef</span>
+      </div>
+      <div class="stack-layer">
+        <div class="layer-num">02</div>
+        <div class="layer-bar" style="background:#6b6b8a;"></div>
+        <div class="layer-content">
+          <div class="layer-name">Observability & Monitoring</div>
+          <div class="layer-desc">Latency tracking, hallucination detection, cost metering</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(107,107,138,0.08);color:#6b6b8a;border:1px solid rgba(107,107,138,0.2);">Health Check</span>
+      </div>
+      <div class="stack-layer">
+        <div class="layer-num">01</div>
+        <div class="layer-bar" style="background:#2a2a3e;"></div>
+        <div class="layer-content">
+          <div class="layer-name">Data & Infrastructure</div>
+          <div class="layer-desc">Vector DBs, object storage, compute clusters, pipelines</div>
+        </div>
+        <span class="layer-tag" style="background:rgba(42,42,62,0.5);color:#6b6b8a;border:1px solid rgba(42,42,62,0.8);">Foundation</span>
+      </div>
+    </div>
+
+    <p>
+      Today we'll go deep on <strong>Layer 04 (RAG)</strong> and <strong>Layer 03 (LLMs/SLMs)</strong> — because that's where the most interesting engineering happens, and where the biggest misconceptions live.
+    </p>
+  </section>
+
+  <!-- SECTION 3: THE RESTAURANT ANALOGY -->
+  <section class="section" id="analogy">
+    <div class="section-number">03 · Mental Model · embedded in session</div>
+    <h2>Think of it as a High-End Restaurant</h2>
+    <div class="section-subtitle">Every component has a job. No one component does everything.</div>
+
+    <p>
+      Before we get technical, let's fix the mental model. Stop thinking of an AI system as one magical brain. Think of it as a coordinated kitchen — multiple specialists, each doing exactly one thing well.
+    </p>
+
+    <div class="restaurant-grid">
+      <div class="restaurant-card">
+        <div class="restaurant-role">Layer 06</div>
+        <div class="restaurant-name">🧑‍💼 The Waiter</div>
+        <p class="restaurant-desc">Takes your order, checks if it's on the menu, verifies you can pay, and routes it to the right chef. Doesn't cook anything.</p>
+        <span class="restaurant-tech">API Gateway · Auth · Safety</span>
+      </div>
+      <div class="restaurant-card">
+        <div class="restaurant-role">Layer 05</div>
+        <div class="restaurant-name">👨‍🍳 The Kitchen Manager</div>
+        <p class="restaurant-desc">If you order a 5-course meal, the manager ensures the appetizer arrives before dessert. Coordinates multiple moving parts.</p>
+        <span class="restaurant-tech">Orchestrator · LangChain · LlamaIndex</span>
+      </div>
+      <div class="restaurant-card">
+        <div class="restaurant-role">Layer 04</div>
+        <div class="restaurant-name">🗄️ The Pantry</div>
+        <p class="restaurant-desc">All the ingredients (your private data) live here. The chef doesn't go to the grocery store — they only grab what's needed for your specific dish.</p>
+        <span class="restaurant-tech">Vector DB · RAG · Embeddings</span>
+      </div>
+      <div class="restaurant-card">
+        <div class="restaurant-role">Layer 03</div>
+        <div class="restaurant-name">🔪 The Chef</div>
+        <p class="restaurant-desc">Does the actual cooking (language processing). Extraordinarily skilled. But useless without ingredients. And very expensive per hour.</p>
+        <span class="restaurant-tech">LLM · SLM · GPT · Llama</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Key insight</div>
+      <p>A restaurant fails not because the chef is bad — it fails because the waiter took the wrong order, the pantry ran out of ingredients, or the manager lost track of a table. AI systems fail the same way.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4: LLMs & SLMs -->
+  <section class="section" id="llms">
+    <div class="section-number">04 · LLMs & SLMs · 25–35 mins</div>
+    <h2>LLMs and SLMs — What They Actually Are</h2>
+    <div class="section-subtitle">No math. Just the right mental model.</div>
+
+    <p>
+      A Large Language Model is, at its core, a <em>very well-read autocomplete</em>. It has read a significant portion of the internet, learned the statistical patterns of human language, and became extraordinarily good at predicting what word comes next — at scale, with context, and with surprising coherence.
+    </p>
+
+    <p>
+      But here's the critical limitation nobody talks about enough: <strong>LLMs are frozen in time.</strong> They were trained on data up to a cutoff date. They know nothing about your company's internal documents. They know nothing about your hospital's patient records. They know nothing about what happened last week.
+    </p>
+
+    <p>
+      This is where the distinction between <strong>LLMs</strong> and <strong>SLMs</strong> (Small Language Models) becomes important — not just academically, but as an engineering decision you'll face in your career.
+    </p>
+
+    <div class="problem-solution">
+      <div class="ps-card">
+        <div>
+          <div class="ps-label" style="color:#f06b6b;">LLM</div>
+          <div class="ps-problem">Massive, powerful, expensive<br/>GPT-4, Claude, Gemini Ultra<br/>Billions of parameters</div>
+        </div>
+        <div class="ps-arrow">⟶</div>
+        <div>
+          <div class="ps-label" style="color:var(--accent);">Best for</div>
+          <div class="ps-solution">Complex reasoning, creative tasks, nuanced understanding. When accuracy matters more than cost.</div>
+        </div>
+      </div>
+      <div class="ps-card">
+        <div>
+          <div class="ps-label" style="color:#f06b6b;">SLM</div>
+          <div class="ps-problem">Compact, fast, deployable<br/>Phi-3, Mistral 7B, Llama 3.2<br/>Millions of parameters</div>
+        </div>
+        <div class="ps-arrow">⟶</div>
+        <div>
+          <div class="ps-label" style="color:var(--accent);">Best for</div>
+          <div class="ps-solution">Latency-sensitive tasks, edge deployment, cost at scale. When you need 10M responses a day.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      At Mastercard, this is a real engineering conversation we have for every AI feature: <em>does this need a large model, or can a smaller, fine-tuned model do this job cheaper and faster?</em> The answer changes everything — cost, latency, infrastructure, and compliance.
+    </p>
+  </section>
+
+  <!-- SECTION 5: RAG -->
+  <section class="section" id="rag">
+    <div class="section-number">05 · RAG · 35–45 mins</div>
+    <h2>RAG — How Industry Makes LLMs Work with Real Data</h2>
+    <div class="section-subtitle">Retrieval Augmented Generation — the idea that bridges the gap</div>
+
+    <p>
+      So we have a problem. LLMs are powerful but frozen. Your organisation has private, proprietary, real-time data that the LLM has never seen. How do you bridge this?
+    </p>
+
+    <p>
+      The naive answer is fine-tuning — retrain the model on your data. This sounds right but is almost always wrong. It's expensive, slow, and you'd need to retrain every time your data changes. In a bank, data changes every second.
+    </p>
+
+    <p>
+      The industry answer is <strong>Retrieval Augmented Generation</strong> — RAG. The concept is elegant in its simplicity:
+    </p>
+
+    <div class="rag-flow">
+      <div class="rag-step">
+        <div class="rag-step-num">R</div>
+        <div class="rag-step-name">Retrieve</div>
+        <p class="rag-step-desc">Search your private data store for the most relevant chunks of information related to the user's query</p>
+      </div>
+      <div class="rag-step">
+        <div class="rag-step-num">A</div>
+        <div class="rag-step-name">Augment</div>
+        <p class="rag-step-desc">Attach those chunks to the user's prompt — give the LLM a "technical manual" before asking it to answer</p>
+      </div>
+      <div class="rag-step">
+        <div class="rag-step-num">G</div>
+        <div class="rag-step-name">Generate</div>
+        <p class="rag-step-desc">The LLM answers using only the provided context — grounded, accurate, and specific to your data</p>
+      </div>
+    </div>
+
+    <p>
+      Think of it like an open-book exam. Without RAG, the LLM sits the exam with only what it memorised during training. With RAG, you hand it the exact chapter of the textbook it needs — right before it answers. The LLM's job becomes reading and reasoning, not memorising.
+    </p>
+
+    <div class="callout">
+      <div class="callout-label">The engineering insight</div>
+      <p>The LLM is not the hard part of a RAG system. Finding, cleaning, chunking, embedding, and retrieving the right data is where real engineering happens. This is why strong fundamentals matter.</p>
+    </div>
+
+    <p>
+      The "Retrieve" step uses a <strong>Vector Database</strong> — which stores your documents as mathematical representations (embeddings) and finds the most semantically similar ones to the query. Not keyword matching. Meaning matching.
+    </p>
+
+    <div class="problem-solution">
+      <div class="ps-card">
+        <div>
+          <div class="ps-label" style="color:#f06b6b;">Problem</div>
+          <div class="ps-problem">"The AI is hallucinating — making up answers that sound confident but are wrong"</div>
+        </div>
+        <div class="ps-arrow">→</div>
+        <div>
+          <div class="ps-label" style="color:var(--accent);">Solution</div>
+          <div class="ps-solution">RAG — give it a grounded technical manual before it answers. Constrain it to your data.</div>
+        </div>
+      </div>
+      <div class="ps-card">
+        <div>
+          <div class="ps-label" style="color:#f06b6b;">Problem</div>
+          <div class="ps-problem">"The AI doesn't know about our latest product / policy / data"</div>
+        </div>
+        <div class="ps-arrow">→</div>
+        <div>
+          <div class="ps-label" style="color:var(--accent);">Solution</div>
+          <div class="ps-solution">Update the vector database — no retraining needed. Your knowledge base is separate from the model.</div>
+        </div>
+      </div>
+      <div class="ps-card">
+        <div>
+          <div class="ps-label" style="color:#f06b6b;">Problem</div>
+          <div class="ps-problem">"The AI is too slow — users are waiting 8 seconds for a response"</div>
+        </div>
+        <div class="ps-arrow">→</div>
+        <div>
+          <div class="ps-label" style="color:var(--accent);">Solution</div>
+          <div class="ps-solution">Use a smaller model for retrieval, cache frequent queries, optimise chunk sizes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: CURRICULUM BRIDGE -->
+  <section class="section" id="bridge">
+    <div class="section-number">06 · Curriculum Connection · embedded</div>
+    <h2>You Already Know More Than You Think</h2>
+    <div class="section-subtitle">Everything we just discussed connects to what you're studying right now</div>
+
+    <p>
+      Here's something your professors won't always tell you — the fundamentals you're learning this semester are the foundation of every system I just described. Let me show you the connections.
+    </p>
+
+    <div class="bridge-grid">
+      <div class="bridge-card">
+        <div class="bridge-subject">Data Structures & Algorithms</div>
+        <p class="bridge-connection">Remember your search algorithms? A Vector Database is doing similarity search at scale — the same principles, applied to high-dimensional embedding spaces.</p>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-subject">Operating Systems</div>
+        <p class="bridge-connection">How your OS manages memory and schedules processes is exactly how we manage GPU clusters and batch inference jobs in production AI systems.</p>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-subject">Computer Networks</div>
+        <p class="bridge-connection">The API Gateway layer is pure networking — HTTP, rate limiting, load balancing. Every concept from your networking course lives here.</p>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-subject">DBMS</div>
+        <p class="bridge-connection">Vector Databases are a new category of database. Your understanding of indexing, query optimisation, and storage directly applies to how we build the RAG retrieval layer.</p>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-subject">Machine Learning</div>
+        <p class="bridge-connection">Embeddings — the core of RAG — are learned representations. Your understanding of neural networks and loss functions explains how embedding models are trained.</p>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-subject">Software Engineering</div>
+        <p class="bridge-connection">Every layer of this stack is a microservice. Clean interfaces, separation of concerns, API design — the principles your SE course teaches are how this system stays maintainable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: DEMO -->
+  <section class="section" id="demo">
+    <div class="section-number">07 · Live Demo · 45–55 mins</div>
+    <h2>Building a Minimal RAG Pipeline</h2>
+    <div class="section-subtitle">A working system in under 30 lines of Python</div>
+
+    <p>
+      Theory is useful. A working system is better. Let's walk through a minimal but complete RAG pipeline — the same conceptual architecture used in production systems, simplified to its essential moving parts.
+    </p>
+
+    <div class="notebook-cta">
+      <div class="notebook-cta-text">
+        <div class="notebook-cta-label">Google Colab Notebook</div>
+        <div class="notebook-cta-title">Minimal RAG Pipeline — Zero Setup Required</div>
+        <p class="notebook-cta-desc">Open in your browser, run every cell, have a working RAG system in 10 minutes. No installations. No API keys needed.</p>
+      </div>
+      <a href="#" class="btn btn-primary">Open Notebook →</a>
+    </div>
+
+    <p>The notebook walks through three stages — mirroring the R-A-G flow exactly:</p>
+
+    <p>
+      <strong>Stage 1 — Ingest:</strong> Take a PDF (your own notes, a research paper, a policy document). Split it into chunks. Convert each chunk into an embedding using a sentence transformer model. Store in a lightweight vector store.
+    </p>
+
+    <p>
+      <strong>Stage 2 — Retrieve:</strong> Take the user's question. Convert it to an embedding using the same model. Find the top-3 most semantically similar chunks from your store. This is your context.
+    </p>
+
+    <p>
+      <strong>Stage 3 — Generate:</strong> Construct a prompt: <code>[System: Answer only from the context below] [Context: chunk1, chunk2, chunk3] [Question: user's question]</code>. Send to an LLM. Return the grounded answer.
+    </p>
+
+    <div class="callout">
+      <div class="callout-label">Try this tonight</div>
+      <p>Upload your own semester notes as the document. Ask it questions. Watch it retrieve exactly the right section and answer accurately. That's a production concept running on your laptop.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 8: TAKEAWAYS -->
+  <section class="section" id="takeaways">
+    <div class="section-number">08 · Close · 55–60 mins</div>
+    <h2>Your 2-Year Runway</h2>
+    <div class="section-subtitle">Three things to do this week. Not someday. This week.</div>
+
+    <p>
+      No matter how advanced AI gets, every production-ready solution will always stand or fall on the strength of its engineering foundation. The students who understand the full stack — not just the model — are the ones who build things that survive contact with reality.
+    </p>
+
+    <ul class="takeaway-list">
+      <li>
+        <div>
+          <div class="takeaway-title">Build and deploy one RAG demo</div>
+          <p class="takeaway-desc">Use the Colab notebook. Swap in your own data. Push it to Hugging Face Spaces — it's free and public. You now have a live, deployed AI system on your resume. Not a Jupyter notebook. A deployed product.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="takeaway-title">Follow one practitioner, not one researcher</div>
+          <p class="takeaway-desc">Researchers publish papers. Practitioners ship systems and write about what broke. Find engineers at companies you admire on LinkedIn or X and read what they post. That's your real curriculum supplement.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="takeaway-title">Read one system design case study</div>
+          <p class="takeaway-desc">Engineering blogs from Uber, Netflix, LinkedIn, and Airbnb document how they built AI systems at scale. One blog post per week. By final year, you'll think differently from every other candidate in a placement interview.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">The one thing to remember</div>
+      <p>AI is not magic. It's very clever plumbing. And the engineers who understand the pipes — not just the model — are the ones who build things that last.</p>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="section" id="about">
+    <div class="section-number">About the Speaker</div>
+    <h2>Karan</h2>
+    <div class="divider"></div>
+    <div class="bio-section">
+      <div class="bio-avatar">K</div>
+      <div>
+        <div class="bio-name">Karan</div>
+        <div class="bio-role">Principal AI Engineer · Mastercard</div>
+        <p class="bio-text">
+          I'm a Principal AI Engineer at Mastercard with over 10 years of experience building AI systems that operate at a scale most engineers only read about. My journey spans the full arc of modern AI — from writing Stanford NLP algorithms in Java to architecting cutting-edge Multi-Agent AI systems powering global financial infrastructure today. At Mastercard, I've worn multiple hats — Lead ML Engineer, ML Engineering Manager, and now Principal AI Engineer — where I architect large-scale Agentic AI platforms, Responsible AI services, and oversee a portfolio of 700+ predictive models in production. I hold a Master's degree in Computer Applications. My belief, after a decade in this field, is simple — no matter how advanced AI gets, every production-ready solution will always stand or fall on the strength of its engineering foundation. Great AI is less about magic and more about very clever plumbing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Anatomy of a Modern AI Stack · SIT Pune · BTech AI/ML 3rd Year · Karan, Principal AI Engineer, Mastercard
+</footer>
+
+</body>
+</html>
