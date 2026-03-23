@@ -309,8 +309,11 @@
     .rag-letter {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 3.5rem; font-weight: 800;
-      line-height: 1; margin-bottom: 0.4rem; opacity: 0.08; color: var(--ink);
+      line-height: 1; margin-bottom: 0.4rem; opacity: 1;
     }
+    .rag-step:nth-child(1) .rag-letter { color: var(--accent2); }
+    .rag-step:nth-child(2) .rag-letter { color: var(--amber); }
+    .rag-step:nth-child(3) .rag-letter { color: var(--green); }
     .rag-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .rag-desc { font-size: 0.88rem; color: var(--ink3); line-height: 1.6; margin: 0; }
     .rag-step:nth-child(1) .rag-name { color: var(--accent2); }
@@ -625,6 +628,18 @@
       letter-spacing: 0.1em; margin-bottom: 0.75rem;
     }
     .demo-stack-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .github-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--ink2); text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 0.45rem 0.9rem; border-radius: var(--radius);
+      transition: all 0.15s;
+    }
+    .github-link:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
     .demo-chip {
       font-size: 0.82rem; font-weight: 600;
       padding: 0.35rem 0.85rem; border-radius: 999px;
@@ -853,7 +868,6 @@
 
   <!-- PAGE HEADER -->
   <header class="page-header">
-    <div class="page-kicker">Guest Session · SIT Pune · BTech AI/ML · 3rd Year</div>
     <h1 class="page-title">Anatomy of a <span class="accent-word">Modern AI Stack</span></h1>
     <p class="page-desc">Every time you interact with an AI, there are layers of engineering working in perfect coordination behind that single response. This session goes beyond the model — and into the machine.</p>
   </header>
@@ -875,15 +889,7 @@
           <p>"No matter how advanced AI gets, every production-ready solution will always stand or fall on the strength of its engineering foundation. Great AI is less about magic — and more about very clever plumbing."</p>
         </div>
       </div>
-      <div class="qr-placeholder" title="Replace with your LinkedIn QR code image">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="7" height="7" rx="1"/>
-          <rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/>
-          <path d="M14 14h2v2h-2zM16 16h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z"/>
-        </svg>
-        <span>LinkedIn<br/>QR Code</span>
-      </div>
+      <img src="../static/Parvez-LinkedIn-QR.jpeg" width="130" height="130" style="border-radius:8px;" alt="LinkedIn QR Code"/>
     </div>
   </section>
 
@@ -923,7 +929,7 @@
   <!-- SECTION 02: AI WORLD EVOLUTION -->
   <section class="section" id="evolution">
     <div class="section-label">02 · The Evolution</div>
-    <h2>Why the Stack Got This Complex</h2>
+    <h2>The AI Evolution — From Rules to Agents</h2>
     <div class="section-sub">Every layer of the Modern AI Stack exists because a previous era hit a wall</div>
     <p>The Modern AI Stack didn't appear overnight. Each layer — the gateway, the orchestrator, the vector database, the model — was added to solve a specific problem that the previous generation of AI simply couldn't handle. Understanding this progression tells you <strong>why each layer exists</strong>, not just what it does.</p>
 
@@ -1381,7 +1387,7 @@
 
     </div>
 
-    <p style="margin-top:2rem;">Today we go deep on <strong>Layer 04 — RAG</strong> and <strong>Layer 03 — LLMs & SLMs</strong>. These are where the most interesting engineering decisions live, and where the biggest misconceptions exist.</p>
+    <p style="margin-top:2rem;">In the sections that follow, we go deep on two of these layers — <strong>Layer 03 (LLMs & SLMs)</strong> and <strong>Layer 04 (RAG)</strong> — because they sit at the heart of every modern AI product. Everything else in the stack exists to support, route, scale, and monitor these two.</p>
 
     <!-- FLOW CHART PNG -->
     <div class="diagram-wrap">
@@ -2005,6 +2011,10 @@
         <span class="demo-chip" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0;">🗄️ SQL Database — data source</span>
         <span class="demo-chip" style="background:#f4f4f5;color:#6b7280;border-color:#e4e4e7;">🐍 Python — everything</span>
       </div>
+      <a href="https://github.com/Parvez-Khan-1/text2sql_agent" target="_blank" class="github-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        View source on GitHub — github.com/Parvez-Khan-1/text2sql_agent
+      </a>
     </div>
 
     <!-- WHAT HAPPENS STEP BY STEP -->
@@ -2058,8 +2068,8 @@
   <!-- TAKEAWAYS -->
   <section class="section" id="takeaways">
     <div class="section-label">10 · Close</div>
-    <h2>Your 2-Year Runway</h2>
-    <div class="section-sub">Three things to do this week — not someday, this week</div>
+    <h2>Where You Go From Here</h2>
+    <div class="section-sub">Three actions. Start this week.</div>
 
     <p>Before the actions — one thing that might surprise you. <strong>Everything we covered today maps directly to subjects you are already studying.</strong> DSA lives in the vector search algorithm. Computer Networks lives in the API Gateway. DBMS lives in the vector store. OS lives in the GPU cluster management. ML lives in the embeddings. Software Engineering lives in every microservice layer. These are not separate worlds — the stack is built from the same fundamentals your degree is teaching you. The difference is knowing how they connect.</p>
 
@@ -2094,7 +2104,7 @@
 </div>
 
 <footer>
-  <span>Anatomy of a Modern AI Stack · SIT Pune · 3rd Year BTech AI/ML</span>
+  <span>Anatomy of a Modern AI Stack</span>
   <span>Parvez Khan · Principal AI Architect · Mastercard</span>
 </footer>
 
