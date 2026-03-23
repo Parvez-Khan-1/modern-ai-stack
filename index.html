@@ -556,6 +556,140 @@
       padding-left: 0.25rem;
     }
 
+    /* ── MCP GRID ── */
+    .mcp-grid {
+      display: flex; align-items: center;
+      gap: 0; margin: 1.75rem 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .mcp-card {
+      flex: 1; padding: 1.4rem 1.2rem; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .mcp-card:last-child { border-right: none; }
+    .mcp-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin: 0 auto 0.6rem;
+    }
+    .mcp-label { font-weight: 700; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.4rem; }
+    .mcp-desc { font-size: 0.82rem; color: var(--ink3); line-height: 1.55; margin-bottom: 0.65rem; }
+    .mcp-chip {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; font-weight: 600;
+      padding: 0.18rem 0.55rem; border-radius: 999px;
+      border: 1px solid;
+    }
+    .mcp-connector {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.3rem;
+      padding: 0 0.5rem; flex-shrink: 0;
+    }
+    .mcp-connector-line { width: 1px; height: 28px; background: var(--border); }
+    .mcp-connector-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; color: var(--muted);
+      text-align: center; line-height: 1.4;
+      white-space: nowrap; color: var(--ink3);
+    }
+
+    /* ── DEMO STEPS ── */
+    .demo-steps { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.25rem; }
+    .demo-step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.4rem;
+    }
+    .demo-step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--accent); min-width: 26px; padding-top: 0.1rem;
+    }
+    .demo-step-title { font-weight: 600; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.25rem; }
+    .demo-step-desc { font-size: 0.86rem; color: var(--ink3); margin: 0; line-height: 1.65; }
+
+    /* ── DEMO STACK CHIPS ── */
+    .demo-stack {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.4rem;
+      margin-top: 1.75rem;
+    }
+    .demo-stack-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem; font-weight: 700;
+      color: var(--ink3); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 0.75rem;
+    }
+    .demo-stack-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .demo-chip {
+      font-size: 0.82rem; font-weight: 600;
+      padding: 0.35rem 0.85rem; border-radius: 999px;
+      border: 1px solid;
+    }
+
+    /* ── RAG COMPARISON ── */
+    .rag-comparison {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem; margin: 1.75rem 0; align-items: start;
+    }
+    .rag-compare-col { display: flex; flex-direction: column; align-items: center; }
+    .rag-compare-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .rag-compare-steps { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 0; }
+    .rag-compare-step {
+      width: 100%; text-align: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.6rem 0.75rem;
+      font-size: 0.82rem; font-weight: 500; color: var(--ink2);
+      background: var(--surface);
+    }
+    .rag-compare-arrow { font-size: 0.9rem; color: var(--border2); padding: 0.2rem 0; }
+    .rag-compare-divider {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem; font-weight: 800;
+      color: var(--border2); align-self: center;
+      padding-top: 2.5rem;
+    }
+
+    /* ── TECH STACK SECTION ── */
+    .techstack-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem; margin: 2rem 0;
+    }
+    .techstack-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.4rem;
+      transition: box-shadow 0.15s;
+    }
+    .techstack-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .techstack-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .techstack-category {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .techstack-title {
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 0.6rem;
+    }
+    .techstack-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .techstack-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 500;
+      padding: 0.2rem 0.55rem; border-radius: 6px;
+      background: var(--bg2); color: var(--ink2);
+      border: 1px solid var(--border);
+    }
+
     /* ── AGENT CARDS ── */
     .agent-grid {
       display: grid; grid-template-columns: 1fr 1fr 1fr;
@@ -683,6 +817,9 @@
       .qr-placeholder { display: none; }
       .why-stats { grid-template-columns: 1fr; }
       .agent-grid { grid-template-columns: 1fr; }
+      .techstack-grid { grid-template-columns: 1fr 1fr; }
+      .rag-comparison { grid-template-columns: 1fr; }
+      .rag-compare-divider { padding-top: 0; }
       .restaurant-grid, .bridge-grid { grid-template-columns: 1fr; }
       .detail-grid { grid-template-columns: 1fr; }
       .ps-card { grid-template-columns: 1fr; }
@@ -705,7 +842,8 @@
     <li><a href="#stack">The Stack</a></li>
     <li><a href="#llms">LLMs & SLMs</a></li>
     <li><a href="#rag">RAG</a></li>
-    <li><a href="#agents">Agents</a></li>
+    <li><a href="#agents">Agents & MCP</a></li>
+    <li><a href="#techstack">Tech Stack</a></li>
     <li><a href="#demo">Demo</a></li>
     <li><a href="#takeaways">Takeaways</a></li>
   </ul>
@@ -731,7 +869,7 @@
           I'm a Principal AI Architect at Mastercard with <strong>over 10 years of experience</strong> building AI systems that operate at a scale most engineers only read about. My journey spans the full arc of modern AI — from writing <strong>Stanford NLP algorithms in Java</strong> to architecting cutting-edge <strong>Multi-Agent AI systems</strong> powering global financial infrastructure today.
         </p>
         <p class="about-bio">
-          At Mastercard, I've worn multiple hats — <strong>Lead ML Engineer</strong>, <strong>ML Engineering Manager</strong>, and now <strong>Principal AI Architect</strong> — where I design large-scale Agentic AI platforms, Responsible AI services, and oversee a portfolio of <strong>700+ predictive models</strong> in production. I hold a Master's degree in Computer Applications.
+          At Mastercard, I've worn multiple hats — <strong>Lead ML Engineer</strong>, <strong>ML Engineering Manager</strong>, and now <strong>Principal AI Architect</strong> — where I design large-scale Agentic AI platforms, Responsible AI services, and oversee a large portfolio of predictive models running in production at global scale. I hold a Master's degree in Computer Applications.
         </p>
         <div class="belief-card">
           <p>"No matter how advanced AI gets, every production-ready solution will always stand or fall on the strength of its engineering foundation. Great AI is less about magic — and more about very clever plumbing."</p>
@@ -760,23 +898,23 @@
       <div class="callout-label">The reality of production AI</div>
       <p>In a live system, your model is rarely the hardest problem. The data pipelines, the latency, the hallucinations, the cost, the monitoring — that is where engineers spend most of their time.</p>
     </div>
-    <p>I've spent 10 years on the production side of this. At Mastercard, I oversee <strong>700+ predictive models running live</strong>. I've seen brilliant models fail spectacularly — not because the model was wrong, but because everything <em>around</em> it wasn't engineered to survive contact with reality.</p>
+    <p>I've spent 10 years on the production side of this. At Mastercard, I've seen brilliant models fail spectacularly in production — not because the model was wrong, but because everything <em>around</em> it wasn't engineered to survive contact with reality.</p>
 
     <div class="why-matters-box">
       <div class="why-matters-label">Why the AI Stack Matters Now</div>
       <p class="why-matters-text">AI in 2025 is no longer a model sitting in a notebook. It is a <strong>living system</strong> — with layers of data, orchestration, retrieval, safety, and infrastructure all working in coordination. The engineers who understand how these layers connect are the ones companies are desperately hiring for. Understanding the stack is what separates an AI <em>user</em> from an AI <em>engineer</em>.</p>
       <div class="why-stats">
         <div class="why-stat">
-          <div class="why-stat-num">700+</div>
-          <div class="why-stat-label">Predictive models in production at Mastercard alone</div>
+          <div class="why-stat-num">10+</div>
+          <div class="why-stat-label">Years building AI systems at enterprise scale in financial services</div>
         </div>
         <div class="why-stat">
           <div class="why-stat-num">10×</div>
-          <div class="why-stat-label">More engineering effort goes into the stack than the model</div>
+          <div class="why-stat-label">More engineering effort goes into the stack than the model itself</div>
         </div>
         <div class="why-stat">
           <div class="why-stat-num">2024</div>
-          <div class="why-stat-label">The year "AI Engineer" became the most in-demand new role</div>
+          <div class="why-stat-label">The year "AI Engineer" became the most in-demand new role globally</div>
         </div>
       </div>
     </div>
@@ -1231,7 +1369,7 @@
             </div>
             <div class="detail-block">
               <div class="detail-label">Real-world example</div>
-              <p class="detail-text">Serving 700+ predictive models at Mastercard requires a shared inference infrastructure — GPU clusters managed via Kubernetes, model artefacts versioned in MLflow, and real-time feature pipelines running on Kafka — all abstracted away from the application teams above.</p>
+              <p class="detail-text">Serving a large portfolio of predictive models at Mastercard requires shared inference infrastructure — GPU clusters managed via Kubernetes, model artefacts versioned in MLflow, and real-time feature pipelines running on Kafka — all abstracted away from the application teams above.</p>
             </div>
             <div class="detail-block">
               <div class="detail-label">What breaks here</div>
@@ -1309,9 +1447,9 @@
 
   <!-- RAG -->
   <section class="section" id="rag">
-    <div class="section-label">06 · RAG</div>
+    <div class="section-label">06 · RAG & Agentic RAG</div>
     <h2>RAG — How Industry Makes LLMs Work with Real Data</h2>
-    <div class="section-sub">Retrieval Augmented Generation — the architecture that closes the gap</div>
+    <div class="section-sub">Retrieval Augmented Generation — and how it evolves into Agentic RAG</div>
     <p>LLMs are powerful but frozen. The naive answer is fine-tuning — retrain the model on your data. This sounds correct but is almost always the wrong engineering decision. It's expensive, slow, and in domains like banking or healthcare where data changes continuously, it simply doesn't scale.</p>
     <p>The industry answer is <strong>Retrieval Augmented Generation — RAG</strong>:</p>
     <div class="rag-flow">
@@ -1332,6 +1470,92 @@
       </div>
     </div>
     <p>Think of it like an open-book exam. Without RAG, the LLM sits the exam with only what it memorised during training. With RAG, you hand it the exact chapter it needs — right before it answers.</p>
+
+    <!-- RAG ARCHITECTURE DIAGRAM -->
+    <div class="restaurant-illustration" style="margin:1.75rem 0;">
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" width="820" height="300" font-family="Inter, sans-serif">
+        <rect x="8" y="8" width="804" height="284" rx="14" fill="#f8f9fb" stroke="#e2e4e9" stroke-width="1.5"/>
+
+        <!-- TITLE -->
+        <text x="414" y="36" text-anchor="middle" font-size="11" fill="#6b7280" font-weight="600" letter-spacing="0.08em">RAG ARCHITECTURE</text>
+
+        <!-- ── INGESTION PIPELINE (top) ── -->
+        <text x="220" y="62" text-anchor="middle" font-size="9.5" fill="#9ca3af" letter-spacing="0.1em">INGESTION PIPELINE (offline)</text>
+
+        <rect x="36" y="72" width="90" height="44" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+        <text x="81" y="90" text-anchor="middle" font-size="10" fill="#b45309" font-weight="700">📄 Documents</text>
+        <text x="81" y="106" text-anchor="middle" font-size="9" fill="#b45309">PDF · TXT · DB</text>
+
+        <path d="M 127 94 L 148 94" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <rect x="149" y="72" width="90" height="44" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+        <text x="194" y="90" text-anchor="middle" font-size="10" fill="#b45309" font-weight="700">✂️ Chunking</text>
+        <text x="194" y="106" text-anchor="middle" font-size="9" fill="#b45309">Split · Clean</text>
+
+        <path d="M 240 94 L 261 94" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <rect x="262" y="72" width="100" height="44" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+        <text x="312" y="90" text-anchor="middle" font-size="10" fill="#b45309" font-weight="700">🔢 Embeddings</text>
+        <text x="312" y="106" text-anchor="middle" font-size="9" fill="#b45309">sentence-transformers</text>
+
+        <path d="M 363 94 L 384 94" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <rect x="385" y="72" width="100" height="44" rx="8" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+        <text x="435" y="90" text-anchor="middle" font-size="10" fill="#7c3aed" font-weight="700">🗄️ Vector Store</text>
+        <text x="435" y="106" text-anchor="middle" font-size="9" fill="#7c3aed">Pinecone · Chroma</text>
+
+        <!-- ── QUERY PIPELINE (bottom) ── -->
+        <text x="500" y="170" text-anchor="middle" font-size="9.5" fill="#9ca3af" letter-spacing="0.1em">QUERY PIPELINE (online)</text>
+
+        <rect x="36" y="182" width="90" height="44" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="81" y="200" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="700">👤 User Query</text>
+        <text x="81" y="216" text-anchor="middle" font-size="9" fill="#1a56db">"What is X?"</text>
+
+        <path d="M 127 204 L 148 204" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <rect x="149" y="182" width="100" height="44" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="199" y="200" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="700">🔢 Embed Query</text>
+        <text x="199" y="216" text-anchor="middle" font-size="9" fill="#1a56db">same model</text>
+
+        <path d="M 250 204 L 271 204" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <!-- retrieval arrow from vector store down -->
+        <path d="M 435 117 L 435 155 L 330 155 L 330 181" stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#ra2)"/>
+        <text x="390" y="150" text-anchor="middle" font-size="9" fill="#7c3aed">similarity search</text>
+
+        <rect x="272" y="182" width="110" height="44" rx="8" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+        <text x="327" y="200" text-anchor="middle" font-size="10" fill="#7c3aed" font-weight="700">📋 Top-K Chunks</text>
+        <text x="327" y="216" text-anchor="middle" font-size="9" fill="#7c3aed">relevant context</text>
+
+        <path d="M 383 204 L 404 204" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <rect x="405" y="182" width="110" height="44" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+        <text x="460" y="198" text-anchor="middle" font-size="10" fill="#b91c1c" font-weight="700">📝 Prompt</text>
+        <text x="460" y="212" text-anchor="middle" font-size="9" fill="#b91c1c">System + Context</text>
+        <text x="460" y="222" text-anchor="middle" font-size="9" fill="#b91c1c">+ Question</text>
+
+        <path d="M 516 204 L 537 204" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#ra1)"/>
+
+        <rect x="538" y="182" width="100" height="44" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="588" y="200" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="700">🧠 LLM</text>
+        <text x="588" y="216" text-anchor="middle" font-size="9" fill="#1a56db">GPT-4 · Llama</text>
+
+        <path d="M 639 204 L 660 204" stroke="#1a56db" stroke-width="1.5" fill="none" marker-end="url(#ra3)"/>
+
+        <rect x="661" y="182" width="100" height="44" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+        <text x="711" y="200" text-anchor="middle" font-size="10" fill="#047857" font-weight="700">✅ Grounded</text>
+        <text x="711" y="216" text-anchor="middle" font-size="9" fill="#047857">Answer</text>
+
+        <!-- bottom label -->
+        <text x="414" y="270" text-anchor="middle" font-size="10" fill="#9ca3af" font-style="italic">The LLM only sees retrieved context — it cannot hallucinate facts it was never given</text>
+
+        <defs>
+          <marker id="ra1" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#d1d5db"/></marker>
+          <marker id="ra2" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#7c3aed"/></marker>
+          <marker id="ra3" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#1a56db"/></marker>
+        </defs>
+      </svg>
+    </div>
     <div class="callout">
       <div class="callout-label">The engineering insight</div>
       <p>The LLM is not the hard part of a RAG system. Finding, cleaning, chunking, embedding, and retrieving the right data — that is where real engineering happens. Strong fundamentals matter here.</p>
@@ -1371,13 +1595,58 @@
         </div>
       </div>
     </div>
+
+    <!-- AGENTIC RAG -->
+    <div style="margin-top:2.5rem;">
+      <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.3rem;">Agentic RAG — When RAG Isn't Enough</h3>
+      <div class="section-sub" style="margin-bottom:1.5rem;">Basic RAG answers one question. Agentic RAG completes a mission.</div>
+      <p>Standard RAG is a single round-trip — one query, one retrieval, one answer. But real enterprise tasks are rarely that simple. <em>"Analyse this contract, compare it against our policy database, identify risk clauses, and draft a summary for legal review"</em> — that is not one retrieval. That is a workflow.</p>
+      <p><strong>Agentic RAG</strong> wraps the RAG pipeline inside an agent reasoning loop. The agent decides what to retrieve, evaluates whether it has enough information, retrieves more if needed, and only generates a final answer when it is satisfied with the evidence.</p>
+
+      <div class="rag-comparison">
+        <div class="rag-compare-col">
+          <div class="rag-compare-label" style="color:var(--ink3);">Basic RAG</div>
+          <div class="rag-compare-steps">
+            <div class="rag-compare-step" style="border-color:#e2e4e9;">User Query</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#ddd6fe;color:#7c3aed;">Single Retrieval</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#bfdbfe;color:#1a56db;">LLM Generates Answer</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#a7f3d0;color:#047857;">Response ✓</div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--ink3);margin-top:0.75rem;text-align:center;">One shot. Fixed context. No correction.</p>
+        </div>
+        <div class="rag-compare-divider">vs</div>
+        <div class="rag-compare-col">
+          <div class="rag-compare-label" style="color:var(--accent);">Agentic RAG</div>
+          <div class="rag-compare-steps">
+            <div class="rag-compare-step" style="border-color:#bfdbfe;color:#1a56db;">User Goal</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#fde68a;color:#b45309;">Agent Plans Query Strategy</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#ddd6fe;color:#7c3aed;">Retrieve → Evaluate → Re-retrieve if needed</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#fde68a;color:#b45309;">Agent Synthesises Across Sources</div>
+            <div class="rag-compare-arrow">↓</div>
+            <div class="rag-compare-step" style="border-color:#a7f3d0;color:#047857;">Grounded, Multi-Source Response ✓</div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--ink3);margin-top:0.75rem;text-align:center;">Iterative. Self-correcting. Multi-source.</p>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:1.75rem;">
+        <div class="callout-label">Real example — Clinical AI at scale</div>
+        <p>An oncology report agent at a hospital doesn't just answer "what is this patient's diagnosis?" It retrieves the lab report, cross-references the radiology findings, checks against clinical guidelines, identifies staging criteria, and produces a structured summary — all through an Agentic RAG loop before a single word is generated.</p>
+      </div>
+    </div>
   </section>
 
   <!-- AGENTS -->
   <section class="section" id="agents">
-    <div class="section-label">07 · Agentic AI</div>
-    <h2>From Knowledge to Action — Introducing Agents</h2>
-    <div class="section-sub">RAG gives the LLM knowledge. Agents give it the ability to act.</div>
+    <div class="section-label">07 · Agentic AI & MCP</div>
+    <h2>From Knowledge to Action — Agents & the MCP Protocol</h2>
+    <div class="section-sub">RAG gives the LLM knowledge. Agents give it the ability to act. MCP gives it a standardised way to connect to anything.</div>
 
     <p>RAG solved one problem — an LLM that knows your data. But there is a second, deeper problem: <strong>knowing is not the same as doing.</strong> An LLM with RAG can tell you the answer. An Agent can go and do something about it.</p>
 
@@ -1392,19 +1661,19 @@
       <div class="agent-card">
         <div class="agent-icon">🧠</div>
         <div class="agent-title">Reasoning</div>
-        <p class="agent-desc">The agent can break a complex task into sub-steps, decide which step to take next, and change course when something doesn't work. It thinks before it acts.</p>
+        <p class="agent-desc">The agent breaks a complex task into sub-steps, decides which step to take next, and changes course when something doesn't work. It thinks before it acts.</p>
         <div class="agent-example">Example: "Summarise this document, find related policies, and draft a compliance report" — the agent figures out the sequence itself.</div>
       </div>
       <div class="agent-card">
         <div class="agent-icon">🔧</div>
         <div class="agent-title">Tool Use</div>
-        <p class="agent-desc">Agents can call external tools — search the web, run code, query a database, send an email, call an API. The LLM decides which tool to use and when.</p>
-        <div class="agent-example">Example: At Mastercard, an agent that detects a suspicious transaction can query the customer profile, check historical patterns, and flag for review — all autonomously.</div>
+        <p class="agent-desc">Agents call external tools — query a database, run code, search the web, call an API. The LLM decides which tool to use and when.</p>
+        <div class="agent-example">Example: A Text2SQL agent that receives a natural language question, calls a tool to fetch the schema, generates SQL, validates it, then executes it.</div>
       </div>
       <div class="agent-card">
         <div class="agent-icon">💾</div>
         <div class="agent-title">Memory</div>
-        <p class="agent-desc">Agents maintain context across steps — short-term (within a task) and long-term (across sessions). This is what makes multi-turn, stateful workflows possible.</p>
+        <p class="agent-desc">Agents maintain context across steps — short-term within a task and long-term across sessions. This makes multi-turn stateful workflows possible.</p>
         <div class="agent-example">Example: A clinical AI agent that remembers a patient's history across multiple consultations, not just the current query.</div>
       </div>
     </div>
@@ -1428,7 +1697,6 @@
     <div class="restaurant-illustration" style="margin-top:1.75rem;">
       <svg viewBox="0 0 740 160" xmlns="http://www.w3.org/2000/svg" width="740" height="160" font-family="Inter, sans-serif">
         <rect x="10" y="10" width="720" height="140" rx="14" fill="#f8f9fb" stroke="#e2e4e9" stroke-width="1.5"/>
-        <!-- boxes -->
         <rect x="30" y="55" width="110" height="50" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
         <text x="85" y="77" text-anchor="middle" font-size="11" fill="#1a56db" font-weight="700">User Goal</text>
         <text x="85" y="93" text-anchor="middle" font-size="10" fill="#1a56db">"Write a report"</text>
@@ -1444,12 +1712,10 @@
         <rect x="620" y="55" width="90" height="50" rx="8" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
         <text x="665" y="77" text-anchor="middle" font-size="11" fill="#047857" font-weight="700">Done?</text>
         <text x="665" y="93" text-anchor="middle" font-size="10" fill="#047857">Yes → respond</text>
-        <!-- arrows -->
         <path d="M 140 80 L 183 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
         <path d="M 295 80 L 338 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
         <path d="M 450 80 L 493 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
         <path d="M 605 80 L 618 80" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
-        <!-- loop back arrow -->
         <path d="M 550 107 Q 550 135 395 135 Q 240 135 240 107" stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#a3)"/>
         <text x="395" y="148" text-anchor="middle" font-size="9.5" fill="#7c3aed">No → replan and try again</text>
         <defs>
@@ -1459,38 +1725,339 @@
       </svg>
     </div>
 
-    <div class="callout" style="margin-top:1.75rem;">
-      <div class="callout-label">Where this is going — Session 2</div>
-      <p>Today we built a RAG system — you now understand Layer 04 of the stack deeply. The next session goes one level further: we build an agent that uses RAG as one of its tools, adds memory, and completes a multi-step task autonomously. That is where the real engineering challenge begins.</p>
+    <!-- MCP SECTION -->
+    <div style="margin-top:2.5rem;">
+      <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.3rem;">MCP — Model Context Protocol</h3>
+      <div class="section-sub" style="margin-bottom:1.5rem;">The USB-C of AI tools — one standard protocol to connect models to anything</div>
+
+      <p>As agents got more powerful, a new problem emerged: every tool had its own integration method. Connecting an LLM to a database looked different from connecting it to an API, which looked different from connecting it to a file system. Engineers were writing glue code for every single combination.</p>
+
+      <p><strong>MCP</strong>, introduced by Anthropic in 2024, solves this with a single open standard. It defines how an AI model discovers and calls external tools — databases, APIs, file systems, code interpreters — using one consistent protocol. Think of it as <em>USB-C for AI tools</em>: one connector that works everywhere.</p>
+
+      <div class="mcp-grid">
+        <div class="mcp-card">
+          <div class="mcp-icon" style="background:#eff6ff;color:#1a56db;">🧠</div>
+          <div class="mcp-label">MCP Client</div>
+          <p class="mcp-desc">The LLM or agent. Discovers available tools, decides which to call, sends structured requests.</p>
+          <span class="mcp-chip" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">GPT-4 · Claude · Llama</span>
+        </div>
+        <div class="mcp-connector">
+          <div class="mcp-connector-line"></div>
+          <div class="mcp-connector-label">MCP Protocol<br/>(JSON-RPC over stdio/SSE)</div>
+          <div class="mcp-connector-line"></div>
+        </div>
+        <div class="mcp-card">
+          <div class="mcp-icon" style="background:#f5f3ff;color:#7c3aed;">⚙️</div>
+          <div class="mcp-label">MCP Server</div>
+          <p class="mcp-desc">Exposes tools, resources, and prompts. Handles execution and returns structured results back to the agent.</p>
+          <span class="mcp-chip" style="background:#f5f3ff;color:#7c3aed;border-color:#ddd6fe;">FastMCP · Custom Servers</span>
+        </div>
+        <div class="mcp-connector">
+          <div class="mcp-connector-line"></div>
+          <div class="mcp-connector-label">Tool Calls</div>
+          <div class="mcp-connector-line"></div>
+        </div>
+        <div class="mcp-card">
+          <div class="mcp-icon" style="background:#ecfdf5;color:#047857;">🗄️</div>
+          <div class="mcp-label">External Systems</div>
+          <p class="mcp-desc">Databases, APIs, file systems, code runners — anything the agent needs access to.</p>
+          <span class="mcp-chip" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0;">SQL DB · REST API · Files</span>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:1.75rem;border-left-color:var(--accent2);">
+        <div class="callout-label" style="color:var(--accent2);">Why MCP matters for the demo</div>
+        <p>In today's demo, the Text2SQL agent uses an MCP server to expose database tools — fetch table schema, retrieve metadata, validate SQL, execute queries. The agent doesn't need to know <em>how</em> the database works internally. It just calls MCP tools and gets structured results back. This is the same pattern used in production AI systems at scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section" id="techstack">
+    <div class="section-label">08 · The Tech Stack</div>
+    <h2>Tools, Libraries & Platforms</h2>
+    <div class="section-sub">The actual technology behind each layer — what engineers use in production</div>
+    <p>Every layer of the stack we've discussed has a real ecosystem of tools behind it. These are not theoretical — these are the libraries, platforms, and infrastructure choices that engineers make every day. Knowing these names puts you one step ahead in every interview and every project.</p>
+
+    <div class="techstack-grid">
+
+      <div class="techstack-card">
+        <div class="techstack-icon">🐍</div>
+        <div class="techstack-category" style="color:#b45309;">Language & Core</div>
+        <div class="techstack-title">Python Ecosystem</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">Python 3.11+</span>
+          <span class="techstack-chip">FastAPI</span>
+          <span class="techstack-chip">Pydantic</span>
+          <span class="techstack-chip">asyncio</span>
+          <span class="techstack-chip">Poetry</span>
+          <span class="techstack-chip">UV</span>
+        </div>
+      </div>
+
+      <div class="techstack-card">
+        <div class="techstack-icon">🤖</div>
+        <div class="techstack-category" style="color:#1a56db;">LLMs & Models</div>
+        <div class="techstack-title">Model Layer</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">OpenAI GPT-4o</span>
+          <span class="techstack-chip">Claude 3.5</span>
+          <span class="techstack-chip">Llama 3</span>
+          <span class="techstack-chip">Phi-3</span>
+          <span class="techstack-chip">Mistral</span>
+          <span class="techstack-chip">Ollama</span>
+          <span class="techstack-chip">Azure OpenAI</span>
+        </div>
+      </div>
+
+      <div class="techstack-card">
+        <div class="techstack-icon">🗄️</div>
+        <div class="techstack-category" style="color:#7c3aed;">RAG & Vector DBs</div>
+        <div class="techstack-title">Retrieval Layer</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">LangChain</span>
+          <span class="techstack-chip">LlamaIndex</span>
+          <span class="techstack-chip">Pinecone</span>
+          <span class="techstack-chip">Weaviate</span>
+          <span class="techstack-chip">Chroma</span>
+          <span class="techstack-chip">FAISS</span>
+          <span class="techstack-chip">pgvector</span>
+          <span class="techstack-chip">sentence-transformers</span>
+        </div>
+      </div>
+
+      <div class="techstack-card" style="border-color:#fde68a;background:#fffef5;">
+        <div class="techstack-icon">🎯</div>
+        <div class="techstack-category" style="color:#ea580c;">Agents & Orchestration</div>
+        <div class="techstack-title">Orchestration Layer <span style="font-size:0.65rem;background:#b45309;color:#fff;padding:0.1rem 0.45rem;border-radius:999px;margin-left:0.3rem;vertical-align:middle;">used in demo</span></div>
+        <div class="techstack-chips">
+          <span class="techstack-chip" style="background:#fffbeb;color:#b45309;border-color:#fde68a;">FastMCP ★</span>
+          <span class="techstack-chip">LangGraph</span>
+          <span class="techstack-chip">AutoGen</span>
+          <span class="techstack-chip">CrewAI</span>
+          <span class="techstack-chip">Semantic Kernel</span>
+          <span class="techstack-chip">DSPy</span>
+        </div>
+      </div>
+
+      <div class="techstack-card">
+        <div class="techstack-icon">🔐</div>
+        <div class="techstack-category" style="color:#b91c1c;">API Gateway & Safety</div>
+        <div class="techstack-title">Gateway Layer</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">Azure API Mgmt</span>
+          <span class="techstack-chip">Kong</span>
+          <span class="techstack-chip">LiteLLM</span>
+          <span class="techstack-chip">Portkey</span>
+          <span class="techstack-chip">Guardrails AI</span>
+          <span class="techstack-chip">NeMo Guardrails</span>
+        </div>
+      </div>
+
+      <div class="techstack-card">
+        <div class="techstack-icon">📊</div>
+        <div class="techstack-category" style="color:#047857;">Observability</div>
+        <div class="techstack-title">Monitoring Layer</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">LangSmith</span>
+          <span class="techstack-chip">Langfuse</span>
+          <span class="techstack-chip">Arize AI</span>
+          <span class="techstack-chip">Datadog</span>
+          <span class="techstack-chip">Grafana</span>
+          <span class="techstack-chip">Prometheus</span>
+        </div>
+      </div>
+
+      <div class="techstack-card">
+        <div class="techstack-icon">☁️</div>
+        <div class="techstack-category" style="color:#6b7280;">Cloud & Infra</div>
+        <div class="techstack-title">Infrastructure Layer</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">Azure AI Foundry</span>
+          <span class="techstack-chip">AWS Bedrock</span>
+          <span class="techstack-chip">GCP Vertex AI</span>
+          <span class="techstack-chip">Kubernetes</span>
+          <span class="techstack-chip">Docker</span>
+          <span class="techstack-chip">Ray</span>
+          <span class="techstack-chip">Databricks</span>
+        </div>
+      </div>
+
+      <div class="techstack-card">
+        <div class="techstack-icon">⚙️</div>
+        <div class="techstack-category" style="color:#7c3aed;">MLOps & Versioning</div>
+        <div class="techstack-title">Model Lifecycle</div>
+        <div class="techstack-chips">
+          <span class="techstack-chip">MLflow</span>
+          <span class="techstack-chip">DVC</span>
+          <span class="techstack-chip">Weights & Biases</span>
+          <span class="techstack-chip">BentoML</span>
+          <span class="techstack-chip">Seldon</span>
+          <span class="techstack-chip">HuggingFace Hub</span>
+        </div>
+      </div>
+
+      <div class="techstack-card" style="border-color:#bfdbfe;background:#fafcff;">
+        <div class="techstack-icon">💬</div>
+        <div class="techstack-category" style="color:#1a56db;">UI & Conversational</div>
+        <div class="techstack-title">Application Layer <span style="font-size:0.65rem;background:#1a56db;color:#fff;padding:0.1rem 0.45rem;border-radius:999px;margin-left:0.3rem;vertical-align:middle;">used in demo</span></div>
+        <div class="techstack-chips">
+          <span class="techstack-chip" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">Chainlit ★</span>
+          <span class="techstack-chip">Streamlit</span>
+          <span class="techstack-chip">Gradio</span>
+          <span class="techstack-chip">Open WebUI</span>
+          <span class="techstack-chip">FastAPI</span>
+          <span class="techstack-chip">Next.js</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Don't try to learn all of these</div>
+      <p>This is the landscape — not a syllabus. Pick one tool per layer and learn it deeply. For most students starting out: <strong>Python + LangChain + Chroma + OpenAI API + Streamlit</strong> gives you a full working stack from retrieval to UI. That's enough to build something real this week.</p>
     </div>
   </section>
 
   <!-- DEMO -->
   <section class="section" id="demo">
-    <div class="section-label">08 · Live Demo</div>
-    <h2>Building a Minimal RAG Pipeline</h2>
-    <div class="section-sub">A working system in under 30 lines of Python — same architecture as production</div>
-    <p>We've talked about RAG conceptually — Retrieve, Augment, Generate. Now let's build one. In under 30 lines of Python, we'll construct the exact same architecture that powers enterprise AI systems — just stripped to its essential moving parts so every step is visible.</p>
-    <div class="notebook-cta">
-      <div>
-        <div class="nb-label">Google Colab Notebook</div>
-        <div class="nb-title">Minimal RAG Pipeline — Zero Setup Required</div>
-        <p class="nb-desc">Open in your browser, run every cell, have a working RAG system in under 10 minutes.</p>
-      </div>
-      <a href="#" class="btn">Open Notebook →</a>
+    <div class="section-label">09 · Live Demo</div>
+    <h2>Text2SQL Agent with MCP — Live</h2>
+    <div class="section-sub">A production-pattern agent built with FastMCP, GPT-4.1-mini, and Chainlit — running live</div>
+
+    <p>Everything we've discussed today — the stack, the LLM, RAG, agents, MCP — comes together in this demo. This is not a toy. It follows the exact same architectural patterns used in enterprise AI systems. The only difference is the scale.</p>
+
+    <!-- DEMO ARCHITECTURE SVG -->
+    <div class="restaurant-illustration" style="margin:1.75rem 0;">
+      <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" width="820" height="260" font-family="Inter, sans-serif">
+        <rect x="8" y="8" width="804" height="244" rx="14" fill="#f8f9fb" stroke="#e2e4e9" stroke-width="1.5"/>
+        <text x="414" y="34" text-anchor="middle" font-size="11" fill="#6b7280" font-weight="600" letter-spacing="0.08em">TEXT2SQL AGENT — MCP ARCHITECTURE</text>
+
+        <!-- USER -->
+        <rect x="28" y="100" width="100" height="56" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+        <text x="78" y="122" text-anchor="middle" font-size="20">💬</text>
+        <text x="78" y="140" text-anchor="middle" font-size="10" fill="#1a56db" font-weight="700">Chainlit UI</text>
+        <text x="78" y="153" text-anchor="middle" font-size="9" fill="#1a56db">User asks question</text>
+
+        <path d="M 129 128 L 154 128" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#d1)"/>
+
+        <!-- AGENT BRAIN -->
+        <rect x="155" y="84" width="130" height="88" rx="10" fill="#fffbeb" stroke="#fde68a" stroke-width="2"/>
+        <text x="220" y="108" text-anchor="middle" font-size="11" fill="#b45309" font-weight="800">🧠 Agent</text>
+        <text x="220" y="124" text-anchor="middle" font-size="10" fill="#b45309">GPT-4.1-mini</text>
+        <text x="220" y="139" text-anchor="middle" font-size="9" fill="#b45309">Plans tool calls</text>
+        <text x="220" y="153" text-anchor="middle" font-size="9" fill="#b45309">Generates SQL</text>
+        <text x="220" y="165" text-anchor="middle" font-size="9" fill="#b45309">Synthesises answer</text>
+
+        <!-- Agent to MCP arrow (down) -->
+        <path d="M 285 128 L 316 128" stroke="#b45309" stroke-width="1.5" fill="none" marker-end="url(#d2)"/>
+        <text x="300" y="120" text-anchor="middle" font-size="8.5" fill="#b45309">MCP calls</text>
+
+        <!-- MCP SERVER box -->
+        <rect x="317" y="70" width="150" height="116" rx="10" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="2"/>
+        <text x="392" y="92" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="800">⚙️ FastMCP Server</text>
+        <line x1="317" y1="100" x2="467" y2="100" stroke="#ddd6fe" stroke-width="1"/>
+        <text x="392" y="116" text-anchor="middle" font-size="9.5" fill="#7c3aed" font-weight="600">Tools Exposed:</text>
+        <text x="392" y="131" text-anchor="middle" font-size="9" fill="#7c3aed">get_tables · get_schema</text>
+        <text x="392" y="145" text-anchor="middle" font-size="9" fill="#7c3aed">get_metadata · validate_sql</text>
+        <text x="392" y="159" text-anchor="middle" font-size="9" fill="#7c3aed">execute_sql</text>
+        <text x="392" y="173" text-anchor="middle" font-size="9" fill="#7c3aed" font-style="italic">Resources: glossary · ER diagram</text>
+
+        <!-- MCP to DB arrow -->
+        <path d="M 468 128 L 499 128" stroke="#d1d5db" stroke-width="1.5" fill="none" marker-end="url(#d1)"/>
+
+        <!-- DATABASE -->
+        <rect x="500" y="100" width="110" height="56" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+        <text x="555" y="122" text-anchor="middle" font-size="20">🗄️</text>
+        <text x="555" y="140" text-anchor="middle" font-size="10" fill="#047857" font-weight="700">SQL Database</text>
+        <text x="555" y="153" text-anchor="middle" font-size="9" fill="#047857">Tables · Schema</text>
+
+        <!-- Result flow back -->
+        <path d="M 500 148 Q 460 195 392 195 Q 290 195 220 175" stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#d3)"/>
+        <text x="370" y="212" text-anchor="middle" font-size="9" fill="#7c3aed">results flow back to agent</text>
+
+        <!-- RESPONSE arrow -->
+        <path d="M 155 115 L 130 115" stroke="#1a56db" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#d4)"/>
+        <text x="140" y="107" text-anchor="middle" font-size="8.5" fill="#1a56db">answer</text>
+
+        <!-- TECH STACK labels at bottom -->
+        <text x="78" y="230" text-anchor="middle" font-size="8.5" fill="#9ca3af">Chainlit</text>
+        <text x="220" y="230" text-anchor="middle" font-size="8.5" fill="#9ca3af">OpenAI API</text>
+        <text x="392" y="230" text-anchor="middle" font-size="8.5" fill="#9ca3af">FastMCP (Python)</text>
+        <text x="555" y="230" text-anchor="middle" font-size="8.5" fill="#9ca3af">SQLite / Postgres</text>
+
+        <defs>
+          <marker id="d1" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#d1d5db"/></marker>
+          <marker id="d2" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#b45309"/></marker>
+          <marker id="d3" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#7c3aed"/></marker>
+          <marker id="d4" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#1a56db"/></marker>
+        </defs>
+      </svg>
     </div>
-    <p><strong>Stage 1 — Ingest:</strong> Take any PDF. Split it into chunks. Convert each chunk into an embedding using a sentence transformer. Store in a lightweight local vector store.</p>
-    <p><strong>Stage 2 — Retrieve:</strong> Take the user's question. Convert it to an embedding. Find the top-3 most semantically similar chunks. This becomes your grounded context.</p>
-    <p><strong>Stage 3 — Generate:</strong> Construct the prompt: <code>[System: Answer only from context] [Context: chunks] [Question: user query]</code>. The LLM answers from your data, not from memory.</p>
-    <div class="callout">
-      <div class="callout-label">Try this tonight</div>
-      <p>Upload your own semester notes. Ask it questions from your syllabus. Watch it retrieve the right section and answer accurately. That is a production-grade concept running on your laptop.</p>
+
+    <!-- TECH STACK USED -->
+    <div class="demo-stack">
+      <div class="demo-stack-label">Stack used in this demo</div>
+      <div class="demo-stack-chips">
+        <span class="demo-chip" style="background:#eff6ff;color:#1a56db;border-color:#bfdbfe;">💬 Chainlit — conversational UI</span>
+        <span class="demo-chip" style="background:#fffbeb;color:#b45309;border-color:#fde68a;">🧠 GPT-4.1-mini — agent brain</span>
+        <span class="demo-chip" style="background:#f5f3ff;color:#7c3aed;border-color:#ddd6fe;">⚙️ FastMCP — tool server</span>
+        <span class="demo-chip" style="background:#ecfdf5;color:#047857;border-color:#a7f3d0;">🗄️ SQL Database — data source</span>
+        <span class="demo-chip" style="background:#f4f4f5;color:#6b7280;border-color:#e4e4e7;">🐍 Python — everything</span>
+      </div>
+    </div>
+
+    <!-- WHAT HAPPENS STEP BY STEP -->
+    <div style="margin-top:2rem;">
+      <p><strong>What happens when you type a question:</strong></p>
+      <div class="demo-steps">
+        <div class="demo-step">
+          <div class="demo-step-num">01</div>
+          <div class="demo-step-content">
+            <div class="demo-step-title">User types a natural language question</div>
+            <p class="demo-step-desc"><em>"How many transactions above ₹10,000 happened in Q3?"</em> — Chainlit captures this and sends it to the agent.</p>
+          </div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-num">02</div>
+          <div class="demo-step-content">
+            <div class="demo-step-title">Agent calls MCP to understand the data</div>
+            <p class="demo-step-desc">Before writing any SQL, the agent calls <code>get_tables</code> and <code>get_schema</code> via the MCP server. It reads the glossary and ER diagram resources to understand relationships.</p>
+          </div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-num">03</div>
+          <div class="demo-step-content">
+            <div class="demo-step-title">Agent generates and validates SQL</div>
+            <p class="demo-step-desc">GPT-4.1-mini generates a SQL query based on the schema. It then calls <code>validate_sql</code> via MCP to check for errors before executing — preventing bad queries from hitting the database.</p>
+          </div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-num">04</div>
+          <div class="demo-step-content">
+            <div class="demo-step-title">Agent executes and synthesises</div>
+            <p class="demo-step-desc"><code>execute_sql</code> runs the validated query. Results come back as structured data. The agent synthesises a plain English answer with the numbers embedded — not just a raw table dump.</p>
+          </div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-num">05</div>
+          <div class="demo-step-content">
+            <div class="demo-step-title">Chainlit renders the response</div>
+            <p class="demo-step-desc">The final answer streams back into the Chainlit UI — with the SQL shown as a collapsible detail, so users can verify the query that produced their answer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:1.75rem;">
+      <div class="callout-label">Why this architecture matters</div>
+      <p>Notice what the agent never does — it never hardcodes the schema, never assumes table names, never trusts its own SQL without validation. It <em>discovers</em> everything through MCP at runtime. This is what makes it robust enough for a production database where schemas change. The same pattern works for any domain — healthcare records, financial transactions, legal documents.</p>
     </div>
   </section>
 
   <!-- TAKEAWAYS -->
   <section class="section" id="takeaways">
-    <div class="section-label">09 · Close</div>
+    <div class="section-label">10 · Close</div>
     <h2>Your 2-Year Runway</h2>
     <div class="section-sub">Three things to do this week — not someday, this week</div>
 
@@ -1501,8 +2068,8 @@
     <ul class="takeaway-list">
       <li>
         <div>
-          <div class="tw-title">Build and deploy one RAG demo this week</div>
-          <p class="tw-desc">Use the Colab notebook. Swap in your own data — your semester notes, a research paper, anything. Push it to Hugging Face Spaces — free and public. You now have a live deployed AI system on your resume. Not a notebook. A deployed product.</p>
+          <div class="tw-title">Rebuild the Text2SQL agent on your own database</div>
+          <p class="tw-desc">Take the demo architecture — Chainlit + FastMCP + OpenAI + a database of your choice. Replace the database with something from your own domain. You now have a working AI agent with a real production pattern on your resume. Not a Colab notebook. A deployed, usable system.</p>
         </div>
       </li>
       <li>
